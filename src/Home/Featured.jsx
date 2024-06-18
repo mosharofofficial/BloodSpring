@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 const Featured = () => {
   return (
     <div className="bg-crimson  text-white w-[90vw] max-w-[1280px] mx-auto bg-[url('https://i.ibb.co/8gG9425/featured.jpg')] bg-cover bg-no-repeat my-10 bg-center p-5 rounded-xl">
-      <div className="bg-[rgb(220,20,60,0.4)]  backdrop-blur-sm rounded-xl">
+      <div className="bg-[rgb(220,20,60,0.45)]  backdrop-blur-sm rounded-xl">
         <h1 className="text-3xl font-bold text-white ml-5 pt-5">
           Why Donate Blood?
         </h1>
@@ -76,7 +76,7 @@ const Featured = () => {
           </div>
         </div>
           <p className="p-5 pt-0 text-lg">
-            Together, we can make a difference. Donate blood today and become a
+            Together we can make a difference. Donate blood today and become a
             lifesaver.
           </p>
       </div>

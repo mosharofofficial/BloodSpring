@@ -4,6 +4,7 @@ import ErrorPage from "./Shared/ErrorPage";
 import Register from "./Authentication/Register/Register";
 import Login from "./Authentication/Login";
 import Home from "./Home/Home";
+import Search from "./SearchPage/Search";
 
 const routes = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ const routes = createBrowserRouter([
       {
         path: "/",
         element: <Home></Home>,
+      },
+      {
+        path: "/search",
+        element: <Search></Search>,
       },
     ],
   },

@@ -3,6 +3,24 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const Login = (props) => {
+  const getFormObject = (event) => {
+    const form = event.target;
+
+    const email = form.email.value;
+    const password = form.password.value;
+
+    return {
+      email,
+      password,
+    };
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = getFormObject(e);
+    console.log(form);
+  };
+
   return (
     <div className="hero min-h-screen bg-crimson  ">
       <div className="hero-content max-w-[100%] w-[100%] flex-col lg:flex-row-reverse">
@@ -16,12 +34,16 @@ const Login = (props) => {
           </p>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body bg-crimson border-white border-[4px] rounded-2xl ">
+          <form
+            onSubmit={handleSubmit}
+            className="card-body bg-crimson border-white border-[4px] rounded-2xl "
+          >
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-xl  text-white">Email :</span>
               </label>
               <input
+                name="email"
                 type="email"
                 placeholder="email"
                 className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"
@@ -35,6 +57,7 @@ const Login = (props) => {
                 </span>
               </label>
               <input
+                name="password"
                 type="password"
                 placeholder="password"
                 className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import upazilas from "./upazilas";
 import districts from "./districts";
@@ -21,6 +21,36 @@ const Register = () => {
     setUpazilaList(upazilasList);
   }, [district]);
 
+  const getFormObject = (event) => {
+    const form = event.target;
+
+    const email = form.email.value;
+    const name = form.name.value;
+    const avatar = form.avatar.value;
+    const bloodGroup = form.bloodGroup.value;
+    const district = form.district.value;
+    const upazila = form.upazila.value;
+    const password = form.password.value;
+    const confirmPassword = form.confirmPassword.value;
+
+    return {
+      email,
+      name,
+      avatar,
+      bloodGroup,
+      district,
+      upazila,
+      password,
+      confirmPassword,
+    };
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = getFormObject(e);
+    console.log(form);
+  };
+
   return (
     <div className="hero min-h-screen bg-crimson  ">
       <div className="hero-content max-w-[100%] w-[100%] flex-col ">
@@ -34,12 +64,16 @@ const Register = () => {
           </p>
         </div>
         <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-          <form className="card-body bg-crimson border-white border-[4px] rounded-2xl ">
+          <form
+            onSubmit={handleSubmit}
+            className="card-body bg-crimson border-white border-[4px] rounded-2xl "
+          >
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-xl  text-white">Email :</span>
               </label>
               <input
+                name="email"
                 type="email"
                 placeholder="email"
                 className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"
@@ -51,6 +85,7 @@ const Register = () => {
                 <span className="label-text text-xl  text-white">Name :</span>
               </label>
               <input
+                name="name"
                 type="text"
                 placeholder="name"
                 className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"
@@ -62,6 +97,7 @@ const Register = () => {
                 <span className="label-text text-xl  text-white">Avatar :</span>
               </label>
               <input
+                name="avatar"
                 type="text"
                 placeholder="image URL"
                 className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"
@@ -75,6 +111,7 @@ const Register = () => {
                 </span>
               </label>
               <select
+                name="bloodGroup"
                 defaultValue={"disabled"}
                 className="select select-primary focus:outline-none border-none text-crimson text-xl w-full max-w-xs"
               >
@@ -98,6 +135,7 @@ const Register = () => {
                 </span>
               </label>
               <select
+                name="district"
                 onChange={(e) => {
                   setDistrict(e.target.value);
                 }}
@@ -121,6 +159,7 @@ const Register = () => {
                 </span>
               </label>
               <select
+                name="upazila"
                 disabled={upazilaList.length ? false : true}
                 defaultValue={"disabled"}
                 className="select select-primary focus:outline-none border-none text-crimson text-xl w-full max-w-xs"
@@ -142,6 +181,7 @@ const Register = () => {
                 </span>
               </label>
               <input
+                name="password"
                 type="password"
                 placeholder="password"
                 className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"
@@ -155,6 +195,7 @@ const Register = () => {
                 </span>
               </label>
               <input
+                name="confirmPassword"
                 type="password"
                 placeholder="confirm password"
                 className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"

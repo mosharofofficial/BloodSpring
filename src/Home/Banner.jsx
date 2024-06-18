@@ -7,7 +7,7 @@ const Banner = () => {
 
   return (
     <div className=" w-[90vw] max-w-[1280px] p-6 lg:p-10 bg-[url('https://i.ibb.co/SdpXKZL/banner.jpg')] bg-cover bg-no-repeat mx-auto flex flex-col gap-4 bg-crimson text-white rounded-xl">
-      <div className="bg-[rgb(220,20,60,0.5)] backdrop-blur-sm p-5 rounded-xl">
+      <div className="bg-[rgb(220,20,60,0.45)] backdrop-blur-sm p-5 rounded-xl">
         <h1 className="text-2xl font-bold">
           {" "}
           Donate Blood and Be a Hero Today!
