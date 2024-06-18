@@ -118,8 +118,8 @@ const Register = () => {
                 <option value={"disabled"} disabled>
                   Select Blood Group
                 </option>
-                <option value={"A+"}>A+</option>
-                <option value={"A-"}>A-</option>
+                <option value={"A+"}>a+</option>
+                <option value={"A-"}>a-</option>
                 <option value={"b+"}>b+</option>
                 <option value={"b-"}>b-</option>
                 <option value={"ab+"}>ab+</option>
@@ -175,7 +175,7 @@ const Register = () => {
                 ))}
               </select>
             </div>
-            
+
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-xl  text-white">
