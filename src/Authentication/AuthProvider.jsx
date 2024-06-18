@@ -4,6 +4,7 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
   signInWithPopup,
+  signOut,
 } from "firebase/auth";
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
@@ -25,13 +26,15 @@ const AuthProvider = ({ children }) => {
 
   //   gmail login setup :
   const googleProvider = new GoogleAuthProvider();
-  const googleLogin = signInWithPopup(auth, googleProvider)
-    .then((res) => res.json())
-    .then((user) => console.log(user.email))
-    .catch((e) => console.log(e.message));
+  const googleLogin = () => {
+    signInWithPopup(auth, googleProvider)
+      .then((res) => res.json())
+      .then((user) => console.log(user.email))
+      .catch((e) => console.log(e.message));
+  };
 
   //   email and password sign up setup:
-  const signUp = (email, password) => {
+  const register = (email, password) => {
     createUserWithEmailAndPassword(auth, email, password)
       .then((res) => res.json())
       .then((user) => {
@@ -48,7 +51,14 @@ const AuthProvider = ({ children }) => {
       .catch((e) => console.log(e.message));
   };
 
-  const values = { user, googleLogin, signUp, login };
+  //   log out setup:
+  const logout = () => {
+    signOut(auth)
+      .then(() => console.log("Logged Out"))
+      .then((e) => console.log(e.message));
+  };
+
+  const values = { user, googleLogin, register, login, logout };
 
   return <authContext.Provider value={values}>{children}</authContext.Provider>;
 };
