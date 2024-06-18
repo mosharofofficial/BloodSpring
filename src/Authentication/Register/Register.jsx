@@ -128,6 +128,7 @@ const Register = () => {
                 <option value={"o-"}>o-</option>
               </select>
             </div>
+
             <div>
               <label className="label">
                 <span className="label-text text-xl  text-white">
@@ -174,6 +175,7 @@ const Register = () => {
                 ))}
               </select>
             </div>
+            
             <div className="form-control">
               <label className="label">
                 <span className="label-text text-xl  text-white">

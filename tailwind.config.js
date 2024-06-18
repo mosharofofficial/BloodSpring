@@ -6,8 +6,10 @@ export default {
       colors: {
         crimson: "#DC143C",
       },
+      screens: {
+        big: "800px",
+      },
     },
   },
   plugins: [require("daisyui")],
 };
-
