@@ -5,6 +5,7 @@ import Register from "./Authentication/Register/Register";
 import Login from "./Authentication/Login";
 import Home from "./Home/Home";
 import Search from "./SearchPage/Search";
+import DonationReqs from "./DonationRequests/DonationReqs";
 
 const routes = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const routes = createBrowserRouter([
       {
         path: "/search",
         element: <Search></Search>,
+      },
+      {
+        path: "/donoReqs",
+        element: <DonationReqs></DonationReqs>
       },
     ],
   },
