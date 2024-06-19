@@ -6,6 +6,7 @@ import Login from "./Authentication/Login";
 import Home from "./Home/Home";
 import Search from "./SearchPage/Search";
 import DonationReqs from "./DonationRequests/DonationReqs";
+import Blogs from "./Blogs/Blogs";
 
 const routes = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const routes = createBrowserRouter([
         path: "/donoReqs",
         element: <DonationReqs></DonationReqs>
       },
+      {
+        path: "/blogs",
+        element: <Blogs></Blogs>
+      }
     ],
   },
   {
