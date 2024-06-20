@@ -120,7 +120,7 @@ const data = [
           intro: "",
           bullets: [
             {
-              heading: "Talk to Us::",
+              heading: "Talk to Us:",
               content:
                 "Our friendly staff is here to answer your questions and address any concerns you might have before, during, and after your donation.",
             },
