@@ -7,6 +7,7 @@ import Home from "./Home/Home";
 import Search from "./SearchPage/Search";
 import DonationReqs from "./DonationRequests/DonationReqs";
 import Blogs from "./Blogs/Blogs";
+import Blog from "./Blogs/Blog";
 
 const routes = createBrowserRouter([
   {
@@ -24,12 +25,16 @@ const routes = createBrowserRouter([
       },
       {
         path: "/donoReqs",
-        element: <DonationReqs></DonationReqs>
+        element: <DonationReqs></DonationReqs>,
       },
       {
         path: "/blogs",
-        element: <Blogs></Blogs>
-      }
+        element: <Blogs></Blogs>,
+      },
+      {
+        path: "/blogs/:blogId",
+        element: <Blog></Blog>,
+      },
     ],
   },
   {

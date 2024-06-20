@@ -1,15 +1,15 @@
 import PropTypes from "prop-types";
 import { MdBloodtype } from "react-icons/md";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const Navbar = () => {
   const links = (
     <>
       <li>
-        <Link to={"/DonoReqs"}>Donation Requests</Link>
+        <NavLink to={"/DonoReqs"}>Donation Requests</NavLink>
       </li>
       <li>
-        <Link to={"/blogs"}>Blogs</Link>
+        <NavLink to={"/blogs"}>Blogs</NavLink>
       </li>
     </>
   );
