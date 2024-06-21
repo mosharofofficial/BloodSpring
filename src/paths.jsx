@@ -8,6 +8,9 @@ import Search from "./SearchPage/Search";
 import DonationReqs from "./DonationRequests/DonationReqs";
 import Blogs from "./Blogs/Blogs";
 import Blog from "./Blogs/Blog";
+import Dashboard from "./Dashboard/Dashboard";
+import DashboardHome from "./Dashboard/DashboardHome";
+import PrivateRouteProvider from "./Shared/PrivateRouteProvider";
 
 const routes = createBrowserRouter([
   {
@@ -41,7 +44,24 @@ const routes = createBrowserRouter([
     path: "/register",
     element: <Register></Register>,
   },
-  { path: "/login", element: <Login></Login> },
+  {
+    path: "/login",
+    element: <Login></Login>,
+  },
+  {
+    path: "/dashboard",
+    element: (
+      <PrivateRouteProvider>
+        <Dashboard></Dashboard>
+      </PrivateRouteProvider>
+    ),
+    children: [
+      {
+        path: "/dashboard",
+        element: <DashboardHome></DashboardHome>,
+      },
+    ],
+  },
 ]);
 
 export default routes;

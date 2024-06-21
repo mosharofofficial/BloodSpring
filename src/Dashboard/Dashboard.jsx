@@ -1,50 +1,38 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { MdBloodtype } from "react-icons/md";
-import { Link, NavLink } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { authContext } from "../Authentication/AuthProvider";
 
-const Navbar = () => {
+const Dashboard = () => {
   const { user, logout } = useContext(authContext);
 
-  const links = (
-    <>
-      <li>
-        <NavLink to={"/DonoReqs"}>Donation Requests</NavLink>
-      </li>
-      <li>
-        <NavLink to={"/blogs"}>Blogs</NavLink>
-      </li>
-    </>
-  );
-
   return (
-    <div className=" bg-crimson">
-      <div className="max-w-[1280px] mx-auto navbar text-white justify-between mb-5 ">
-        <div className="navbar-start w-auto">
-          <div className="dropdown">
-            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+    <div className="drawer min-w-[430px]">
+      <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
+      <div className="drawer-content flex flex-col">
+        {/* Navbar */}
+        <div className="w-full navbar bg-crimson text-white lg:hidden">
+          <div className="flex-none lg:hidden">
+            <label
+              htmlFor="my-drawer-3"
+              aria-label="open sidebar"
+              className="btn btn-square btn-ghost"
+            >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
-                className="h-5 w-5"
                 fill="none"
                 viewBox="0 0 24 24"
-                stroke="currentColor"
+                className="inline-block w-6 h-6 stroke-current"
               >
                 <path
                   strokeLinecap="round"
                   strokeLinejoin="round"
                   strokeWidth="2"
-                  d="M4 6h16M4 12h8m-8 6h16"
-                />
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
               </svg>
-            </div>
-            <ul
-              tabIndex={0}
-              className="menu menu-sm dropdown-content  bg-crimson text-white text-lg  mt-3 z-[1] p-2 shadow rounded-box w-52"
-            >
-              {links}
-            </ul>
+            </label>
           </div>
           <Link to={"/"}>
             {" "}
@@ -56,11 +44,18 @@ const Navbar = () => {
             </button>
           </Link>
         </div>
-        <div className="navbar-center hidden lg:flex">
-          <ul className="menu  menu-horizontal  px-1">{links}</ul>
-        </div>
-        <div className="navbar-end w-auto">
-          {user ? (
+        {/* Page content here */}
+        <Outlet></Outlet>
+      </div>
+      <div className="drawer-side lg:hidden">
+        <label
+          htmlFor="my-drawer-3"
+          aria-label="close sidebar"
+          className="drawer-overlay"
+        ></label>
+        <ul className=" p-4 w-[300px] min-h-full bg-crimson">
+          {/* Sidebar content here */}
+          <li>
             <div className="dropdown dropdown-end">
               <div
                 tabIndex={0}
@@ -83,22 +78,13 @@ const Navbar = () => {
                 </li>
               </ul>
             </div>
-          ) : (
-            <div className="flex gap-1 items-center justify-center">
-              <button className="btn button">
-                <Link to={"/login"}>LogIn</Link>
-              </button>
-              <button className="btn button">
-                <Link to={"/register"}>SignUp</Link>
-              </button>
-            </div>
-          )}
-        </div>
+          </li>
+        </ul>
       </div>
     </div>
   );
 };
 
-Navbar.propTypes = {};
+Dashboard.propTypes = {};
 
-export default Navbar;
+export default Dashboard;

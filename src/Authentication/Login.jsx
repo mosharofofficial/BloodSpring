@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import PropTypes from "prop-types";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useLocation } from "react-router-dom";
 import { authContext } from "./AuthProvider";
 
 const Login = () => {
@@ -28,8 +28,13 @@ const Login = () => {
       })
       .catch((e) => console.log(e.message));
   };
+
+  const path = useLocation().state;
+  console.log(path)
+  
+  
   if (user) {
-    return <Navigate to={"/"}></Navigate>;
+    return <Navigate to={path || "/"}></Navigate>;
   } else {
     return (
       <div className="hero min-h-screen bg-crimson  ">

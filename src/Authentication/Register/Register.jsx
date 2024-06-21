@@ -4,9 +4,10 @@ import upazilas from "./upazilas";
 import districts from "./districts";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { authContext } from "../AuthProvider";
+import { myAxios } from "../../Axios.config";
 
 const Register = () => {
-  const { user, register,  update } = useContext(authContext);
+  const { user, register, update } = useContext(authContext);
   const [district, setDistrict] = useState(null);
   const [upazilaList, setUpazilaList] = useState([]);
 
@@ -29,27 +30,17 @@ const Register = () => {
   const getFormObject = (event) => {
     const form = event.target;
 
-    const email = form.email.value;
-    const name = form.name.value;
-    const avatar = form.avatar.value;
-    const bloodGroup = form.bloodGroup.value;
-    const district = form.district.value;
-    const upazila = form.upazila.value;
-    const password = form.password.value;
-    const confirmPassword = form.confirmPassword.value;
-    const role = "donor";
-    const isActive = true;
     return {
-      email,
-      name,
-      avatar,
-      bloodGroup,
-      district,
-      upazila,
-      password,
-      confirmPassword,
-      role,
-      isActive,
+      email: form.email.value,
+      name: form.name.value,
+      avatar: form.avatar.value,
+      bloodGroup: form.bloodGroup.value,
+      district: form.district.value,
+      upazila: form.upazila.value,
+      password: form.password.value,
+      confirmPassword: form.confirmPassword.value,
+      role: "donor",
+      isActive: true,
     };
   };
 
@@ -65,7 +56,13 @@ const Register = () => {
 
             .catch((e) => console.log(e.message));
         })
-        .then(() => navigate("/"))
+        .then(() => {
+          myAxios.post("/addUser", form).then((res) => {
+            if (res.data.insertedId) {
+              navigate("/");
+            }
+          });
+        })
         .catch((e) => console.log(e.message));
     } else {
       alert("passwords dont match !");
