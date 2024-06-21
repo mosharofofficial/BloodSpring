@@ -18,7 +18,7 @@ const Banner = () => {
           need. Whether you’re a first-time donor or a lifelong supporter, your
           contribution matters.
         </p>
-        <div className="flex gap-2 ">
+        <div className="flex gap-2 mt-3">
           <button onClick={() => navigate("/register")} className="btn button">
             Join as a donor
           </button>
