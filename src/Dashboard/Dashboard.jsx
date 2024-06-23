@@ -1,11 +1,44 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { MdBloodtype } from "react-icons/md";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Navigate, Outlet } from "react-router-dom";
 import { authContext } from "../Authentication/AuthProvider";
 
 const Dashboard = () => {
   const { user, logout } = useContext(authContext);
+
+  const links = (
+    <>
+      <li className="flex justify-center my-5  flex-col">
+        <div className=" text-3xl flex flex-nowrap flex-row items-center justify-center py-4 border-y-[4px] text-white">
+          <span className="text-[60px]">
+            <MdBloodtype />
+          </span>
+          <span>BloodSpring</span>
+        </div>
+        <img
+          src={user.photoURL}
+          className="size-[90px] mt-10 mx-auto  rounded-full "
+        />
+      </li>
+      <Link to={"/dashboard/profile"}>
+        <li className="text-white text-2xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
+          Profile
+        </li>
+      </Link>
+      <Link to={"/"}>
+        <li className="text-white text-2xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
+          Home
+        </li>
+      </Link>
+      <li
+        onClick={() => logout()}
+        className="text-white text-2xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4 hover:cursor-pointer"
+      >
+        Log out
+      </li>
+    </>
+  );
 
   return (
     <div className="drawer min-w-[430px]">
@@ -36,7 +69,7 @@ const Dashboard = () => {
           </div>
           <Link to={"/"}>
             {" "}
-            <button className="btn btn-ghost gap-0 text-xl ">
+            <button className="btn btn-ghost gap-0 text-2xl ">
               <span className="text-4xl">
                 <MdBloodtype />
               </span>
@@ -45,7 +78,9 @@ const Dashboard = () => {
           </Link>
         </div>
         {/* Page content here */}
-        <Outlet></Outlet>
+        <div className="pl-[4px]">
+          <Outlet></Outlet>
+        </div>
       </div>
       <div className="drawer-side lg:hidden">
         <label
@@ -53,32 +88,15 @@ const Dashboard = () => {
           aria-label="close sidebar"
           className="drawer-overlay"
         ></label>
-        <ul className=" p-4 w-[300px] min-h-full bg-crimson">
+        <ul className=" p-4 w-[300px] min-h-full bg-crimson flex flex-col gap-2 ">
           {/* Sidebar content here */}
-          <li>
-            <div className="dropdown dropdown-end">
-              <div
-                tabIndex={0}
-                role="button"
-                className="btn btn-ghost btn-circle avatar"
-              >
-                <div className="w-10 rounded-full">
-                  <img src={user.photoURL} />
-                </div>
-              </div>
-              <ul
-                tabIndex={0}
-                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content rounded-box w-52 bg-crimson"
-              >
-                <li className="">
-                  <Link to={"/dashboard"}>Dashboard</Link>
-                </li>
-                <li>
-                  <a onClick={() => logout()}>Logout</a>
-                </li>
-              </ul>
-            </div>
-          </li>
+          {links}
+        </ul>
+      </div>
+      <div className="w-[300px] bg-crimson h-screen hidden lg:block border-r-[4px] border-white">
+        <ul className=" p-4 w-[300px] min-h-full bg-crimson flex flex-col gap-2 ">
+          {/* Sidebar content here */}
+          {links}
         </ul>
       </div>
     </div>

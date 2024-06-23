@@ -30,7 +30,7 @@ const Login = () => {
   };
 
   const path = useLocation().state;
-  console.log(path)
+  // console.log(path)
   
   
   if (user) {

@@ -6,8 +6,6 @@ const myAxios = axios.create({
 
 const myAxiosSecure = axios.create({
   baseURL: "http://localhost:5000",
-  withCredentials: true,
-  
 });
 
 export { myAxios, myAxiosSecure };
