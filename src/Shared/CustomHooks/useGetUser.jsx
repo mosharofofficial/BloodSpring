@@ -1,23 +1,24 @@
 import { useQuery } from "@tanstack/react-query";
 import { myAxiosSecure } from "../../Axios.config";
-import { useContext, useEffect, useState } from "react";
+import { useContext } from "react";
 import { authContext } from "../../Authentication/AuthProvider";
 
 const useGetUser = () => {
+  // console.log(localStorage.getItem("access-token"));
   const { user } = useContext(authContext);
-    const { data: currentUser = {}, refetch } = useQuery({
-      queryKey: ["currentUserData"],
-      queryFn: async () =>
-        await myAxiosSecure.get(`/getCurrentUser`, {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("access-token")}`,
-          },
-          params: {
-            email: user.email,
-          },
-        }),
-    });
-  return currentUser.data;
+  const { data: currentUser = {}, isPending } = useQuery({
+    queryKey: ["currentUserData"],
+    queryFn: async () =>
+      await myAxiosSecure.get(`/getCurrentUser`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        },
+        params: {
+          email: user.email,
+        },
+      }),
+  });
+  return { data: currentUser.data, isPending };
 };
 
 export default useGetUser;

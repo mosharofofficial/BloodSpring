@@ -45,7 +45,7 @@ const Dashboard = () => {
       <input id="my-drawer-3" type="checkbox" className="drawer-toggle" />
       <div className="drawer-content flex flex-col">
         {/* Navbar */}
-        <div className="w-full navbar bg-crimson text-white lg:hidden">
+        <div className="w-full navbar bg-crimson text-white lg:hidden border-b-[4px] border-white">
           <div className="flex-none lg:hidden">
             <label
               htmlFor="my-drawer-3"
@@ -78,7 +78,7 @@ const Dashboard = () => {
           </Link>
         </div>
         {/* Page content here */}
-        <div className="pl-[4px]">
+        <div className="lg:pl-[4px]">
           <Outlet></Outlet>
         </div>
       </div>

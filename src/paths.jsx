@@ -9,8 +9,9 @@ import DonationReqs from "./DonationRequests/DonationReqs";
 import Blogs from "./Blogs/Blogs";
 import Blog from "./Blogs/Blog";
 import Dashboard from "./Dashboard/Dashboard";
-import DashboardHome from "./Dashboard/DashboardHome";
+import DashboardHome from "./Dashboard/Donor/DashboardHome";
 import PrivateRouteProvider from "./Shared/PrivateRouteProvider";
+import Profile from "./Dashboard/Profile";
 
 const routes = createBrowserRouter([
   {
@@ -59,6 +60,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard",
         element: <DashboardHome></DashboardHome>,
+      },
+      {
+        path: "/dashboard/profile",
+        element: <Profile></Profile>,
       },
     ],
   },
