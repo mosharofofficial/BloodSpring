@@ -1,19 +1,12 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { MdBloodtype } from "react-icons/md";
-<<<<<<< HEAD
 import { Link, NavLink, useNavigate } from "react-router-dom";
-=======
-import { Link, NavLink } from "react-router-dom";
->>>>>>> 12ec375f63a17df63ce591264dc738ff3d841519
 import { authContext } from "../Authentication/AuthProvider";
 
 const Navbar = () => {
   const { user, logout } = useContext(authContext);
-<<<<<<< HEAD
   const navigate = useNavigate();
-=======
->>>>>>> 12ec375f63a17df63ce591264dc738ff3d841519
 
   const links = (
     <>
@@ -93,7 +86,6 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="flex gap-1 items-center justify-center">
-<<<<<<< HEAD
               <button onClick={() => navigate("/login")} className="btn button">
                 LogIn
               </button>
@@ -102,13 +94,6 @@ const Navbar = () => {
                 className="btn button"
               >
                 SignUp
-=======
-              <button className="btn button">
-                <Link to={"/login"}>LogIn</Link>
-              </button>
-              <button className="btn button">
-                <Link to={"/register"}>SignUp</Link>
->>>>>>> 12ec375f63a17df63ce591264dc738ff3d841519
               </button>
             </div>
           )}
