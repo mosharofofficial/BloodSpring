@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { useContext } from "react";
 import { MdBloodtype } from "react-icons/md";
-import { Link, Navigate, Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 import { authContext } from "../Authentication/AuthProvider";
 
 const Dashboard = () => {
@@ -22,18 +22,23 @@ const Dashboard = () => {
         />
       </li>
       <Link to={"/dashboard/profile"}>
-        <li className="text-white text-2xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
+        <li className="text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
           Profile
         </li>
       </Link>
       <Link to={"/"}>
-        <li className="text-white text-2xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
+        <li className="text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
           Home
+        </li>
+      </Link>
+      <Link to={"/dashboard/create-donation-request"}>
+        <li className="text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
+          Create Donation Request
         </li>
       </Link>
       <li
         onClick={() => logout()}
-        className="text-white text-2xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4 hover:cursor-pointer"
+        className="text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4 hover:cursor-pointer"
       >
         Log out
       </li>
@@ -78,7 +83,7 @@ const Dashboard = () => {
           </Link>
         </div>
         {/* Page content here */}
-        <div className="lg:pl-[4px]">
+        <div className="lg:pl-[4px] ">
           <Outlet></Outlet>
         </div>
       </div>
@@ -93,8 +98,8 @@ const Dashboard = () => {
           {links}
         </ul>
       </div>
-      <div className="w-[300px] bg-crimson h-screen hidden lg:block border-r-[4px] border-white">
-        <ul className=" p-4 w-[300px] min-h-full bg-crimson flex flex-col gap-2 ">
+      <div className="w-[300px] bg-crimson min-h-screen h-full hidden lg:block border-r-[4px] border-white">
+        <ul className=" p-4 w-[300px] h-full bg-crimson flex flex-col gap-2 ">
           {/* Sidebar content here */}
           {links}
         </ul>

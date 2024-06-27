@@ -12,6 +12,7 @@ import Dashboard from "./Dashboard/Dashboard";
 import DashboardHome from "./Dashboard/Donor/DashboardHome";
 import PrivateRouteProvider from "./Shared/PrivateRouteProvider";
 import Profile from "./Dashboard/Profile";
+import CreateDonationRequest from "./Dashboard/Donor/CreateDonationRequst/CreateDonationRequest.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -64,6 +65,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/profile",
         element: <Profile></Profile>,
+      },
+      {
+        path: "/dashboard/create-donation-request",
+        element: <CreateDonationRequest></CreateDonationRequest>
       },
     ],
   },

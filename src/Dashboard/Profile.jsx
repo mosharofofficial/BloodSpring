@@ -6,6 +6,8 @@ import upazilas from "../Authentication/Register/upazilas";
 import { AiOutlineConsoleSql } from "react-icons/ai";
 import { myAxiosSecure } from "../Axios.config";
 import { authContext } from "../Authentication/AuthProvider";
+import { Navigate } from "react-router-dom";
+import ErrorPage from "../Shared/ErrorPage";
 
 const Profile = () => {
   const { update } = useContext(authContext);
@@ -81,7 +83,7 @@ const Profile = () => {
 
   if (!isPending && currentUser) {
     return (
-      <div className="hero bg-crimson min-h-screen w-auto flex flex-col items-center justify">
+      <div className="hero bg-crimson min-h-screen w-auto flex flex-col items-center justify pb-20">
         <h1 className="text-3xl text-white border-b-[4px] w-full text-center p-5 mb-10">
           Profile
         </h1>
@@ -99,7 +101,7 @@ const Profile = () => {
           <div className="card shadow-2xl max-w-[460px] sm:max-w-full sm:min-w-[600px] w-full shrink-0 border-[4px]  border-white">
             <form
               ref={formRef}
-              className="flex flex-col  gap-3 mt-8 bg-crimson p-4"
+              className="flex flex-col rounded-xl gap-3 mt-8 bg-crimson p-4"
             >
               <label className="text-3xl  text-white bg-crimson ">
                 <span>Email :</span>
@@ -192,6 +194,8 @@ const Profile = () => {
         </div>
       </div>
     );
+  } else {
+    return <ErrorPage></ErrorPage>
   }
 };
 
