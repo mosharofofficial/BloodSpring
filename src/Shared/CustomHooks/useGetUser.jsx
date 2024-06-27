@@ -6,11 +6,15 @@ import { authContext } from "../../Authentication/AuthProvider";
 const useGetUser = () => {
   // console.log(localStorage.getItem("access-token"));
   const { user } = useContext(authContext);
+<<<<<<< HEAD
   const {
     data: currentUser = {},
     isPending,
     refetch,
   } = useQuery({
+=======
+  const { data: currentUser = {}, isPending } = useQuery({
+>>>>>>> 12ec375f63a17df63ce591264dc738ff3d841519
     queryKey: ["currentUserData"],
     queryFn: async () =>
       await myAxiosSecure.get(`/getCurrentUser`, {
@@ -22,7 +26,11 @@ const useGetUser = () => {
         },
       }),
   });
+<<<<<<< HEAD
   return { data: currentUser.data, isPending, refetch };
+=======
+  return { data: currentUser.data, isPending };
+>>>>>>> 12ec375f63a17df63ce591264dc738ff3d841519
 };
 
 export default useGetUser;
