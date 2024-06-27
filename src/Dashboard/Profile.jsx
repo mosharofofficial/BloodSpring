@@ -59,7 +59,6 @@ const Profile = () => {
         upazila: formRef?.current.upazila.value,
       };
 
-      // console.log(formData);
 
       myAxiosSecure
         .patch(`/updateUserProfile?email=${currentUser.email}`, formData)
