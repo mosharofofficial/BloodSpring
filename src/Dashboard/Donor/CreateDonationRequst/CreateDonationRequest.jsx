@@ -123,13 +123,13 @@ const CreateDonationRequest = () => {
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text text-xl  text-white">
-                      Avatar :
+                      Name :
                     </span>
                   </label>
                   <input
-                    name="avatar"
+                    name="recipientName"
                     type="text"
-                    placeholder="image URL"
+                    placeholder="Recipient's name"
                     className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"
                     required
                   />
@@ -209,33 +209,80 @@ const CreateDonationRequest = () => {
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text text-xl  text-white">
-                      Password :
+                      Hospital Name :
                     </span>
                   </label>
                   <input
-                    name="password"
-                    type="password"
-                    placeholder="password"
+                    name="hospital"
+                    type="text"
+                    placeholder="Hospital name"
                     className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"
                     required
                   />
                 </div>
+
                 <div className="form-control">
                   <label className="label">
                     <span className="label-text text-xl  text-white">
-                      Confirm Password :
+                      Full Address :
                     </span>
                   </label>
                   <input
-                    name="confirmPassword"
-                    type="password"
-                    placeholder="confirm password"
+                    name="address"
+                    type="text"
+                    placeholder="Full Address"
                     className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"
                     required
                   />
                 </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-xl  text-white">
+                      Donation Date :
+                    </span>
+                  </label>
+                  <input
+                    name="date"
+                    placeholder="Donation Date"
+                    type="text"
+                    className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"
+                    required
+                  />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-xl  text-white">
+                      Donation Time :
+                    </span>
+                  </label>
+                  <input
+                    name="time"
+                    placeholder="Donation Time"
+                    type="text"
+                    className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none"
+                    required
+                  />
+                </div>
+
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-xl  text-white">
+                      Message :
+                    </span>
+                  </label>
+                  <textarea
+                    name="time"
+                    placeholder="Explain in details why you need blood ."
+                   
+                    className="text-xl w-full h-[250px]  px-[10px] py-[5px] rounded-[5px] text-crimson resize-none focus:outline-none"
+                    required
+                  ></textarea>
+                </div>
+
                 <div className="form-control mt-6">
-                  <button className="btn button">Submit</button>
+                  <button className="btn button">Request</button>
                 </div>
               </div>
             </form>
