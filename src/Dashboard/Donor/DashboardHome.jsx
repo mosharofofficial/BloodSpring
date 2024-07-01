@@ -9,7 +9,7 @@ const DashboardHome = () => {
     <div>
       <h1 className="text-4xl font-bold py-10 text-center bg-crimson  text-white ">
         Welcome {user?.name}
-        {console.log("currentUser : " ,user)}
+        {/* {console.log("currentUser : " ,user)} */}
       </h1>
     </div>
   );
