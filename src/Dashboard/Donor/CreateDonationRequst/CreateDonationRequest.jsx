@@ -95,22 +95,25 @@ const CreateDonationRequest = () => {
   };
   if (!isPending) {
     return (
-      <div className="bg-crimson min-h-screen">
+      <div className="bg-crimson min-h-screen ">
         {/* {console.log(date)}
        {console.log(time)} */}
 
-        <h1 className="text-3xl text-white border-b-[4px] w-full text-center p-5 mb-10">
+        <h1 className="text-3xl text-white border-b-[4px] w-full text-center p-5 ">
           Create Donation Request
         </h1>
         <div className="hero min-h-screen bg-crimson  ">
-          <div className="hero-content max-w-[100%] w-[100%] flex-col ">
-            <div className="card shrink-0 w-full max-w-sm shadow-2xl bg-base-100">
-              <form
-                onSubmit={handleSubmit}
-                className="card-body bg-crimson border-white border-[4px] rounded-2xl "
-              >
-                <h1 className="text-2xl text-white">Requester&apos;s info</h1>
-                <div className="border-y-[4px] py-5">
+          <div className="hero-content max-w-[100%] w-[100%] p-0 m-0">
+            {/* card shrink-0 w-full max-w-sm shadow-2xl bg-base-100 */}
+            <form
+              onSubmit={handleSubmit}
+              className="card-body bg-crimson flex flex-col justify-center items-center p-5"
+            >
+              <div className="border-[4px] p-5 rounded-xl mb-4 ">
+                <h1 className="text-2xl text-white pb-4">
+                  Requester&apos;s info
+                </h1>
+                <div className="border-y-[4px] py-5 flex flex-col md:flex-row gap-2 justify-start">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text text-xl  text-white">
@@ -144,11 +147,13 @@ const CreateDonationRequest = () => {
                     />
                   </div>
                 </div>
-                <h1 className="text-2xl mt-10 text-white">
+              </div>
+              <div className="border-[4px] p-5 rounded-xl">
+                <h1 className="text-2xl  text-white pb-4">
                   Recipient&apos;s info
                 </h1>
 
-                <div className="border-y-[4px] py-5">
+                <div className="border-y-[4px] py-5 grid grid-cols-1 md:grid-cols-2 gap-3 items-start">
                   <div className="form-control">
                     <label className="label">
                       <span className="label-text text-xl  text-white">
@@ -303,7 +308,7 @@ const CreateDonationRequest = () => {
                     />
                   </div>
 
-                  <div className="form-control">
+                  <div className="form-control col-span-1 md:col-span-2">
                     <label className="label">
                       <span className="label-text text-xl  text-white">
                         Message :
@@ -312,19 +317,18 @@ const CreateDonationRequest = () => {
                     <textarea
                       name="message"
                       placeholder="Explain in details why you need blood ."
-                      className="text-xl w-full h-[250px]  px-[10px] py-[5px] rounded-[5px] text-crimson resize-none focus:outline-none"
+                      className="text-xl w-full h-[100px]  px-[10px] py-[5px] rounded-[5px] text-crimson resize-none focus:outline-none"
                       required
                     ></textarea>
                   </div>
-
-                  <div className="form-control mt-6">
-                    <button type="submit" className="btn button">
-                      Request
-                    </button>
-                  </div>
                 </div>
-              </form>
-            </div>
+                <div className="form-control mt-6">
+                  <button type="submit" className="btn button">
+                    Request
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
         </div>
       </div>

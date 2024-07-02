@@ -45,4 +45,5 @@
 .menu li > :not(ul, .menu-title, details, .btn):active {
   background-color: #dc143c;
   border: 4px solid white;
+  color: white;
 }
