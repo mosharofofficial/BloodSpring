@@ -18,9 +18,7 @@ const CreateDonationRequest = () => {
   const [time, setTime] = useState("");
 
   useEffect(() => {
-    if (!isPending) {
-      console.log(data);
-    }
+  
 
     const selectedDistrict = districts.find(
       (districtObject) => districtObject["name"] === district

@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { MdBloodtype } from "react-icons/md";
 import { Link, Outlet } from "react-router-dom";
 import { authContext } from "../Authentication/AuthProvider";
@@ -7,26 +7,33 @@ import { authContext } from "../Authentication/AuthProvider";
 const Dashboard = () => {
   const { user, logout } = useContext(authContext);
 
+
+
   const links = (
     <>
-      <li className="flex justify-center my-5  flex-col">
-        <div className=" text-3xl flex flex-nowrap flex-row items-center justify-center py-4 border-y-[4px] text-white">
-          <span className="text-[60px]">
-            <MdBloodtype />
-          </span>
-          <span>BloodSpring</span>
-        </div>
-        <img
-          src={user.photoURL}
-          className="size-[90px] mt-10 mx-auto  rounded-full "
-        />
-      </li>
+      <Link to={"/"}>
+        <li className="flex justify-center my-5  flex-col">
+          <div className=" flex flex-nowrap flex-row items-center justify-center py-4 border-y-[4px] text-white">
+            {" "}
+            <button className="btn btn-ghost gap-0 text-xl ">
+              <span className="text-4xl">
+                <MdBloodtype />
+              </span>
+              <span>BloodSpring</span>
+            </button>
+          </div>
+          <img
+            src={user.photoURL}
+            className="size-[90px] mt-10 mx-auto  rounded-full "
+          />
+        </li>
+      </Link>
       <Link to={"/dashboard/profile"}>
         <li className="text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
           Profile
         </li>
       </Link>
-      <Link to={"/"}>
+      <Link to={"/dashboard"}>
         <li className="text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
           Home
         </li>
@@ -34,6 +41,11 @@ const Dashboard = () => {
       <Link to={"/dashboard/create-donation-request"}>
         <li className="text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
           Create Donation Request
+        </li>
+      </Link>
+      <Link to={"/dashboard/my-donation-requests"}>
+        <li className="text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
+          My Donation Requests
         </li>
       </Link>
       <li

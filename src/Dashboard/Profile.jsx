@@ -81,6 +81,10 @@ const Profile = () => {
     setDisabled(!disabled);
   };
 
+  if (!currentUser) {
+    return <ErrorPage></ErrorPage>;
+  }
+
   if (!isPending && currentUser) {
     return (
       <div className="hero bg-crimson min-h-screen w-auto flex flex-col items-center justify pb-20">
