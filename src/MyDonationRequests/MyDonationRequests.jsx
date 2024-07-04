@@ -7,10 +7,7 @@ const MyDonationRequests = () => {
     const {data:requestsData, isPending, refetch} = useGetRequests();
 
 
-    useEffect(()=>{
-        console.log(isPending)
-        console.log(requestsData)
-    },[isPending])
+    
     
     
     if (!isPending) {
@@ -19,61 +16,63 @@ const MyDonationRequests = () => {
             {/* {console.log(date)}
        {console.log(time)} */}
 
-            <h1 className="text-3xl text-white border-b-[4px] w-full text-center p-5 ">
+            <h1 className="text-3xl text-white w-full text-center p-5 ">
               My Donation Requests
             </h1>
-            <div className="p-2 bg-crimson grid grid-cols-1  md:grid-cols-2 gap-2 items-start justify-center">
-              {/* card component : */}
-
-              <div className="card card-side bg-base-100 shadow-xl max-w-[500px]  mx-auto border-[4px] border-white m-3">
-                <figure className=" bg-crimson max-w-[35%] ">
-                  <img
-                    src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                    alt="Movie"
-                    className="rounded-l-xl object-cover w-full h-full "
-                  />
-                </figure>
-                <div className="card-body bg-crimson rounded-r-xl text-white p-3 flex flex-col justify-between ">
-                  <h2 className="text-xl ">Name : Mosharof Hossain</h2>
-                  <h2 className="text-xl ">Location : Upazila, District</h2>
-                  <h2 className="text-xl ">
-                    Date: {new Date().toDateString()}
-                  </h2>
-                  <h2 className="text-xl ">
-                    Time: {new Date().toTimeString().split(" ")[0]}
-                  </h2>
-                  <div className="card-actions ">
-                    <button className="btn button">View</button>
-                  </div>
-                </div>
+            <div className="bg-crimson text-white">
+              <div className="overflow-x-auto ">
+                <table className="table table-xs ">
+                  <thead>
+                    <tr>
+                      <th></th>
+                    </tr>
+                    <tr className="text-white">
+                      <th>Recipient Name</th>
+                      <th>Recipient Location</th>
+                      <th>Donation Date</th>
+                      <th>Donation Time</th>
+                      <th>Donation Status</th>
+                      <th>Donor Information</th>
+                      <th>Actions</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {requestsData.map((req) => {
+                      return (
+                        <tr key={req._id} className="">
+                          <td className="text-sm">{req.recipientName}</td>
+                          <td className="text-sm">
+                            {req.district}, {req.upazila}
+                          </td>
+                          <td className="text-sm">{req.date}</td>
+                          <td className="text-sm">{req.time}</td>
+                          <td className="text-sm">{req.status}</td>
+                          <td className="text-sm">
+                            <ul>
+                              <li>{req.name}</li>
+                              <li>{req.email}</li>
+                            </ul>
+                          </td>
+                          <td className="flex flex-col p-0 ">
+                            <button className="btn button min-h-8  h-auto">
+                              View
+                            </button>
+                            <button className="btn button min-h-8  h-auto">
+                              Edit
+                            </button>
+                            <button className="btn button min-h-8  h-auto">
+                              Delete
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                  <tfoot>
+                    <tr></tr>
+                  </tfoot>
+                </table>
               </div>
-              {/* card end */}
-
-              {/* card component : */}
-
-              <div className="card card-side bg-base-100 shadow-xl max-w-[500px]  mx-auto border-[4px] border-white m-3">
-                <figure className=" bg-crimson max-w-[35%] ">
-                  <img
-                    src="https://img.daisyui.com/images/stock/photo-1635805737707-575885ab0820.jpg"
-                    alt="Movie"
-                    className="rounded-l-xl object-cover w-full h-full "
-                  />
-                </figure>
-                <div className="card-body bg-crimson rounded-r-xl text-white p-3 flex flex-col justify-between ">
-                  <h2 className="text-xl ">Name : Mosharof Hossain</h2>
-                  <h2 className="text-xl ">Location : Upazila, District</h2>
-                  <h2 className="text-xl ">
-                    Date: {new Date().toDateString()}
-                  </h2>
-                  <h2 className="text-xl ">
-                    Time: {new Date().toTimeString().split(" ")[0]}
-                  </h2>
-                  <div className="card-actions ">
-                    <button className="btn button">View</button>
-                  </div>
-                </div>
-              </div>
-              {/* card end */}
             </div>
           </div>
         );

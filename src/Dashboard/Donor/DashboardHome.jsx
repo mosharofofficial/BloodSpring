@@ -30,11 +30,12 @@ const DashboardHome = () => {
     <div className="bg-crimson  text-white pb-5">
       <h1 className="text-4xl font-bold py-5 text-center border-b-[4px] border-white mb-5">
         Welcome {firebaseUser?.displayName}
-        {console.log(latestThree)}
+        {/* {console.log(latestThree)} */}
       </h1>
       <div className={`${(isPending || !latestThree.length) && "hidden "} `}>
-        <div className="overflow-x-auto ">
+
           <h1 className="text-center text-3xl ">Latest Donation Requests </h1>
+        <div className="overflow-x-auto ">
           <table className="table table-xs ">
             <thead>
               <tr>
@@ -87,6 +88,7 @@ const DashboardHome = () => {
             </tfoot>
           </table>
         </div>
+        
         <div className="flex  justify-center mt-5 pb-5 mb-5 border-b-[4px] border-white">
           <button
             onClick={() => navigate("/dashboard/my-donation-requests")}
