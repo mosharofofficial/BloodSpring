@@ -18,6 +18,7 @@ const useGetRequests = () => {
         },
       }),
   });
+  // console.log(data)
   return { data: data.data, isPending, refetch };
 };
 

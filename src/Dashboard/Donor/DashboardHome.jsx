@@ -4,6 +4,7 @@ import { useQuery } from "@tanstack/react-query";
 import { myAxios } from "../../Axios.config";
 import { authContext } from "../../Authentication/AuthProvider";
 import { useNavigate } from "react-router-dom";
+import Row from "../../MyDonationRequests/Row";
 
 const DashboardHome = () => {
   const navigate = useNavigate();
@@ -54,32 +55,7 @@ const DashboardHome = () => {
             <tbody>
               {latestThree.map((req) => {
                 return (
-                  <tr key={req._id} className="">
-                    <td className="text-sm">{req.recipientName}</td>
-                    <td className="text-sm">
-                      {req.district}, {req.upazila}
-                    </td>
-                    <td className="text-sm">{req.date}</td>
-                    <td className="text-sm">{req.time}</td>
-                    <td className="text-sm">{req.status}</td>
-                    <td className="text-sm">
-                      <ul>
-                        <li>{req.name}</li>
-                        <li>{req.email}</li>
-                      </ul>
-                    </td>
-                    <td className="flex flex-col p-0 ">
-                      <button className="btn button min-h-8  h-auto">
-                        View
-                      </button>
-                      <button className="btn button min-h-8  h-auto">
-                        Edit
-                      </button>
-                      <button className="btn button min-h-8  h-auto">
-                        Delete
-                      </button>
-                    </td>
-                  </tr>
+                 <Row key={req._id} reqData={req}></Row>
                 );
               })}
             </tbody>

@@ -3,10 +3,8 @@ import useGetUser from "../Shared/CustomHooks/useGetUser";
 import { useContext, useEffect, useRef, useState } from "react";
 import districts from "../Authentication/Register/districts";
 import upazilas from "../Authentication/Register/upazilas";
-import { AiOutlineConsoleSql } from "react-icons/ai";
 import { myAxiosSecure } from "../Axios.config";
 import { authContext } from "../Authentication/AuthProvider";
-import { Navigate } from "react-router-dom";
 import ErrorPage from "../Shared/ErrorPage";
 
 const Profile = () => {
@@ -21,10 +19,10 @@ const Profile = () => {
   const [upazilaList, setUpazilaList] = useState([]);
   const [selectedUpazila, setSelectedUpazila] = useState("");
   const [disabled, setDisabled] = useState(true);
-  const [districtTriggered, setDistrictTriggered] = useState(false);
-
+  
   const formRef = useRef(null);
-
+  
+  const [districtTriggered, setDistrictTriggered] = useState(false);
   useEffect(() => {
     // console.log(isPending);
     if (!isPending && !districtTriggered) {

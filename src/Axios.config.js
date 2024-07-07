@@ -6,9 +6,9 @@ const myAxios = axios.create({
 
 const myAxiosSecure = axios.create({
   baseURL: "http://localhost:5000",
-  headers: {
+ headers: {
     authorization: `Bearer ${localStorage.getItem("access-token")}`,
-  
+
   },
   
 });

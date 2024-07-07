@@ -1,20 +1,24 @@
 import PropTypes from "prop-types";
 import useGetRequests from "../Shared/CustomHooks/useGetRequests";
 import { useEffect } from "react";
+import Row from "./Row";
 
 const MyDonationRequests = () => {
 
     const {data:requestsData, isPending, refetch} = useGetRequests();
 
 
-    
+    // useEffect(()=>{
+    //   console.log(isPending);
+    //   !isPending && console.log(requestsData) 
+    // },[isPending])
     
     
     if (!isPending) {
         return (
           <div className="bg-crimson min-h-screen ">
-            {/* {console.log(date)}
-       {console.log(time)} */}
+            {/* {console.log(isPending)} */}
+       {/* {console.log(time)} */}
 
             <h1 className="text-3xl text-white w-full text-center p-5 ">
               My Donation Requests
@@ -39,32 +43,7 @@ const MyDonationRequests = () => {
                   <tbody>
                     {requestsData.map((req) => {
                       return (
-                        <tr key={req._id} className="">
-                          <td className="text-sm">{req.recipientName}</td>
-                          <td className="text-sm">
-                            {req.district}, {req.upazila}
-                          </td>
-                          <td className="text-sm">{req.date}</td>
-                          <td className="text-sm">{req.time}</td>
-                          <td className="text-sm">{req.status}</td>
-                          <td className="text-sm">
-                            <ul>
-                              <li>{req.name}</li>
-                              <li>{req.email}</li>
-                            </ul>
-                          </td>
-                          <td className="flex flex-col p-0 ">
-                            <button className="btn button min-h-8  h-auto">
-                              View
-                            </button>
-                            <button className="btn button min-h-8  h-auto">
-                              Edit
-                            </button>
-                            <button className="btn button min-h-8  h-auto">
-                              Delete
-                            </button>
-                          </td>
-                        </tr>
+                        <Row key={req._id} reqData={req}></Row>
                       );
                     })}
                   </tbody>
