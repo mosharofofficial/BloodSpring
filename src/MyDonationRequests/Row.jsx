@@ -20,7 +20,12 @@ const Row = ({ reqData }) => {
         </ul>
       </td>
       <td className="flex flex-col p-0 ">
-        <button className="btn button min-h-8  h-auto">View</button>
+        <button
+          onClick={() => navigate(`/dashboard/request-details/${reqData._id}`)}
+          className="btn button min-h-8  h-auto"
+        >
+          View
+        </button>
         <button
           className="btn button min-h-8  h-auto"
           onClick={() => navigate(`/dashboard/edit-request/${reqData._id}`)}

@@ -12,6 +12,7 @@ import { useQuery } from "@tanstack/react-query";
 
 const EditDonationRequest = () => {
 
+  const { user } = useContext(authContext);
     const { id } = useParams();
 
      const {
@@ -31,10 +32,9 @@ const EditDonationRequest = () => {
          }),
      });
 
-     useEffect(()=>{refetch()},[])
+     
     
     
-  const { user } = useContext(authContext);
 
   const { data } = useGetUser();
   const [district, setDistrict] = useState("");
