@@ -1,12 +1,9 @@
-import React, { useContext } from "react";
+import { useContext } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { myAxiosSecure } from "../Axios.config";
 import { authContext } from "../Authentication/AuthProvider";
-import Flatpickr from "react-flatpickr";
-import "flatpickr/dist/themes/material_red.css";
-
 const RequestDetails = () => {
   const { user } = useContext(authContext);
   const { id } = useParams();
@@ -31,7 +28,7 @@ const RequestDetails = () => {
   if (!isPending) {
     return (
       <div className="bg-crimson min-h-screen ">
-        {console.log(pastData.data)}
+        {/* {console.log(pastData.data)} */}
 
         <h1 className="text-3xl text-white border-b-[4px] w-full text-center p-5 ">
           Donation Request Details
@@ -203,17 +200,6 @@ const RequestDetails = () => {
                         Donation Time :
                       </span>
                     </label>
-                    {/* <Flatpickr
-                      className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none disabled:text-crimson disabled:bg-white cursor-default"
-                      disabled
-                      value={pastData.data.time}
-                      options={{
-                        enableTime: true,
-                        noCalendar: true,
-                        dateFormat: "G:i K",
-                      }}
-                    /> */}
-                    {/* {console.log(pastData.data.time)} */}
                     <input
                       name="recipientName"
                       disabled

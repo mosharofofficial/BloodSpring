@@ -43,7 +43,7 @@ const MyDonationRequests = () => {
                   <tbody>
                     {requestsData.map((req) => {
                       return (
-                        <Row key={req._id} reqData={req}></Row>
+                        <Row key={req._id} reqData={req} refetch={refetch}></Row>
                       );
                     })}
                   </tbody>
