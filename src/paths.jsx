@@ -16,6 +16,8 @@ import CreateDonationRequest from "./Dashboard/Donor/CreateDonationRequst/Create
 import MyDonationRequests from "./MyDonationRequests/MyDonationRequests.jsx";
 import EditDonationRequest from "./Shared/EditDonationRequest.jsx";
 import RequestDetails from "./Shared/RequestDetails.jsx";
+import AdminDashboardHome from "./Dashboard/Admin/AdminDashboardHome.jsx";
+import DashboardWrapper from "./Dashboard/DashboardWrapper.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -63,8 +65,16 @@ const routes = createBrowserRouter([
     children: [
       {
         path: "/dashboard",
-        element: <DashboardHome></DashboardHome>,
+        element: <DashboardWrapper></DashboardWrapper>,
       },
+      // {
+      //   path: "/dashboard/donorDashboard",
+      //   element: <DashboardHome></DashboardHome>,
+      // },
+      // {
+      //   path: "/dashboard/adminDashboard",
+      //   element: <AdminDashboardHome></AdminDashboardHome>,
+      // },
       {
         path: "/dashboard/profile",
         element: <Profile></Profile>,
@@ -75,17 +85,16 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/my-donation-requests",
-        element: <MyDonationRequests></MyDonationRequests>
+        element: <MyDonationRequests></MyDonationRequests>,
       },
       {
         path: "/dashboard/edit-request/:id",
-        element: <EditDonationRequest></EditDonationRequest>
+        element: <EditDonationRequest></EditDonationRequest>,
       },
       {
         path: "/dashboard/request-details/:id",
-        element: <RequestDetails></RequestDetails>
-        
-      }
+        element: <RequestDetails></RequestDetails>,
+      },
     ],
   },
 ]);

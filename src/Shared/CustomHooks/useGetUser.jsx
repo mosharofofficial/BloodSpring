@@ -11,7 +11,7 @@ const useGetUser = () => {
     isPending,
     refetch,
   } = useQuery({
-    queryKey: ["currentUserData"],
+    queryKey: [`${user.email}`],
     queryFn: async () =>
       await myAxiosSecure.get(`/getCurrentUser`, {
         headers: {
@@ -22,6 +22,7 @@ const useGetUser = () => {
         },
       }),
   });
+
   return { data: currentUser.data, isPending, refetch };
 };
 
