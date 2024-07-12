@@ -28,7 +28,7 @@ const AllUsers = () => {
         All Users
       </h1>
       <div className="overflow-x-auto py-5 flex justify-center">
-        <table className="table max-w-[1024px] border-x-[1px]">
+        <table className="table userTable max-w-[1024px] border-x-[1px]">
           {/* head */}
           <thead>
             <tr className="border-t-[1px] text-white">
@@ -38,9 +38,11 @@ const AllUsers = () => {
               <th></th>
             </tr>
           </thead>
-          <tbody>
+          <tbody className="p-1">
             {/* rows */}
-            {users.map(rowData=><UserRow key={rowData._id} rowData={rowData}></UserRow>)}
+            {users.map((rowData) => (
+              <UserRow key={rowData._id} rowData={rowData}></UserRow>
+            ))}
           </tbody>
           {/* foot */}
           <tfoot>

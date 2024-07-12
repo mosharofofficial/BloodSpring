@@ -4,8 +4,8 @@ import { BsThreeDots } from "react-icons/bs";
 
 const UserRow = ({ rowData }) => {
   return (
-    <tr>
-      <td className="px-3">
+    <tr className="">
+      <td className="p-1">
         <div className="flex items-center gap-3">
           <div className="avatar">
             <div className="mask mask-squircle h-12 w-12">
@@ -18,8 +18,8 @@ const UserRow = ({ rowData }) => {
           </div>
         </div>
       </td>
-      <td className="px-3">{rowData.email}</td>
-      <td className="px-3">{rowData.isActive ? "Active" : "Blocked"}</td>
+      <td className="px-1">{rowData.email}</td>
+      <td className="px-1">{rowData.isActive ? "Active" : "Blocked"}</td>
       <th>
         <div className="dropdown dropdown-left dropdown-end">
           <div tabIndex={0} role="button" className="btn button px-2 m-0">
