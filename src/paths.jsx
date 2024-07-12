@@ -18,6 +18,7 @@ import EditDonationRequest from "./Shared/EditDonationRequest.jsx";
 import RequestDetails from "./Shared/RequestDetails.jsx";
 import AdminDashboardHome from "./Dashboard/Admin/AdminDashboardHome.jsx";
 import DashboardWrapper from "./Dashboard/DashboardWrapper.jsx";
+import AllUsers from "./Dashboard/Admin/allUsers/AllUsers.jsx";
 
 const routes = createBrowserRouter([
   {
@@ -94,6 +95,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/request-details/:id",
         element: <RequestDetails></RequestDetails>,
+      },
+      {
+        path: "/dashboard/all-users",
+        element: <AllUsers></AllUsers>
       },
     ],
   },

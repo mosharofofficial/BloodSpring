@@ -44,11 +44,23 @@ const Dashboard = () => {
           Create Donation Request
         </li>
       </Link>
+
       <Link to={"/dashboard/my-donation-requests"}>
         <li className="text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4">
           My Donation Requests
         </li>
       </Link>
+
+      <Link to={"/dashboard/all-users"}>
+        <li
+          className={`text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4 ${
+            !isPending && userData.role !== "admin" && "hidden"
+          }`}
+        >
+          All Users
+        </li>
+      </Link>
+
       <li
         onClick={() => logout()}
         className="text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4 hover:cursor-pointer"
