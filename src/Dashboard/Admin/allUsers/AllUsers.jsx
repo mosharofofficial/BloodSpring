@@ -41,7 +41,7 @@ const AllUsers = () => {
           <tbody className="p-1">
             {/* rows */}
             {users.map((rowData) => (
-              <UserRow key={rowData._id} rowData={rowData}></UserRow>
+              <UserRow key={rowData._id} rowId={rowData._id}></UserRow>
             ))}
           </tbody>
           {/* foot */}
