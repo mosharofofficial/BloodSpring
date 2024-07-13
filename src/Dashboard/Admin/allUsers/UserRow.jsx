@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { BsThreeDots } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
@@ -8,12 +8,76 @@ import { authContext } from "../../../Authentication/AuthProvider";
 const UserRow = ({ rowId }) => {
   const { user } = useContext(authContext);
 
-  const { data: rowData = {}, isPending } = useQuery({
+  const {
+    data: rowData = {},
+    isPending,
+    refetch,
+  } = useQuery({
     queryKey: [`${rowId}`],
     queryFn: () => myAxiosSecure.get(`/getUser/${rowId}?email=${user.email}`),
   });
 
-  if (!isPending) {
+  //   useEffect(()=>{
+  //     console.log(Object.keys(rowData));
+  //   }, [isPending])
+
+  const makeAdmin = () => {
+    myAxiosSecure
+      .patch(`/makeAdmin/${rowId}?email=${user.email}`)
+      .then((res) => {
+        if (res.data.modifiedCount === 1) {
+          alert(`${rowData.data.name} is now an admin.`);
+        }
+      })
+      .then(() => {
+        refetch();
+      })
+      .catch((e) => console.log(e.message));
+  };
+
+  const makeVolunteer = () => {
+    myAxiosSecure
+      .patch(`/makeVolunteer/${rowId}?email=${user.email}`)
+      .then((res) => {
+       if (res.data.modifiedCount === 1) {
+         alert(`${rowData.data.name} is now a volunteer.`);
+       }
+      })
+      .then(() => {
+        refetch();
+      })
+      .catch((e) => console.log(e.message));
+  };
+
+  const blockUser = () => {
+    myAxiosSecure
+      .patch(`/blockUser/${rowId}?email=${user.email}`)
+      .then((res) => {
+         if (res.data.modifiedCount === 1) {
+           alert(`${rowData.data.name} is now blocked.`);
+         }
+      })
+      .then(() => {
+        refetch();
+      })
+      .catch((e) => console.log(e.message));
+  };
+
+  const unblockUser = () => {
+    myAxiosSecure
+      .patch(`/unblockUser/${rowId}?email=${user.email}`)
+      .then((res) => {
+         if (res.data.modifiedCount === 1) {
+           alert(`${rowData.data.name} is now active.`);
+         }
+      })
+      .then(() => {
+        refetch();
+      })
+      .catch((e) => console.log(e.message));
+  };
+
+  if (!isPending && Object.keys(rowData)) {
     return (
       <tr className="">
         <td className="p-1">
@@ -46,17 +110,26 @@ const UserRow = ({ rowId }) => {
               className="dropdown-content gap-1 menu bg-white rounded-box z-[1] w-[150px] p-1 shadow border-[1px]"
             >
               <li>
-                <button className="btn button px-0 min-h-[0px] h-[30px]">
+                <button
+                  onClick={rowData.data.isActive ? blockUser : unblockUser}
+                  className="btn button px-0 min-h-[0px] h-[30px]"
+                >
                   {rowData.data.isActive ? "Block" : "Unblock"}
                 </button>
               </li>
               <li>
-                <button className="btn button px-0 min-h-[0px] h-[30px]">
+                <button
+                  onClick={makeVolunteer}
+                  className="btn button px-0 min-h-[0px] h-[30px]"
+                >
                   Volunteer
                 </button>
               </li>
               <li>
-                <button className="btn button px-0 min-h-[0px] h-[30px]">
+                <button
+                  onClick={makeAdmin}
+                  className="btn button px-0 min-h-[0px] h-[30px]"
+                >
                   Admin
                 </button>
               </li>

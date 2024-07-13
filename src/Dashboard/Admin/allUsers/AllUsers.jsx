@@ -10,7 +10,7 @@ const AllUsers = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
-    console.log(user.email);
+    // console.log(user.email);
 
     myAxiosSecure
       .get(`/getAllUsers?email=${user.email}`, {
@@ -23,7 +23,7 @@ const AllUsers = () => {
 
   return (
     <div className="bg-crimson text-white">
-      {console.log(users[0])}
+      {/* {console.log(users[0])} */}
       <h1 className="text-3xl text-white w-full text-center p-5 border-b-[4px] border-white">
         All Users
       </h1>
