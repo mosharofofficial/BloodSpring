@@ -19,8 +19,10 @@ import RequestDetails from "./Shared/RequestDetails.jsx";
 import AdminDashboardHome from "./Dashboard/Admin/AdminDashboardHome.jsx";
 import DashboardWrapper from "./Dashboard/DashboardWrapper.jsx";
 import AllUsers from "./Dashboard/Admin/allUsers/AllUsers.jsx";
+import Forbidden from "./Shared/Forbidden.jsx";
 
 const routes = createBrowserRouter([
+  { path: "/forbidden", element: <Forbidden></Forbidden> },
   {
     path: "/",
     element: <App></App>,
@@ -98,7 +100,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/all-users",
-        element: <AllUsers></AllUsers>
+        element: <AllUsers></AllUsers>,
       },
     ],
   },

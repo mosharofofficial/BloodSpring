@@ -4,6 +4,8 @@ import { BsThreeDots } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
 import { myAxiosSecure } from "../../../Axios.config";
 import { authContext } from "../../../Authentication/AuthProvider";
+import ErrorPage from "../../../Shared/ErrorPage";
+import { Navigate } from "react-router-dom";
 
 const UserRow = ({ rowId }) => {
   const { user } = useContext(authContext);
@@ -138,7 +140,7 @@ const UserRow = ({ rowId }) => {
         </th>
       </tr>
     );
-  }
+  } 
 };
 
 UserRow.propTypes = {

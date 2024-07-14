@@ -7,6 +7,8 @@ import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_red.css";
 import useGetUser from "../../../Shared/CustomHooks/useGetUser";
 import { myAxiosSecure } from "../../../Axios.config";
+import { Navigate } from "react-router-dom";
+import BlockedPage from "../../../Shared/BlockedPage";
 
 const CreateDonationRequest = () => {
   const { user } = useContext(authContext);
@@ -91,7 +93,12 @@ const CreateDonationRequest = () => {
         .catch((e) => console.log(e.message));
     }
   };
-  if (!isPending) {
+  if (!isPending && !(Object.keys(data).length === 0)) {
+
+    if (!(data?.isActive)) {
+      return <BlockedPage></BlockedPage>
+    }
+    
     return (
       <div className="bg-crimson min-h-screen ">
         {/* {console.log(date)}

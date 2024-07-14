@@ -22,6 +22,7 @@ const AuthProvider = ({ children }) => {
       setUser(cUser);
       if (cUser) {
         const userInfo = { email: cUser.email };
+        // console.log("new token info : ", userInfo)
         myAxios.post("/jwt", userInfo).then((res) => {
           // console.log(res.data);
           if (res.data.token) {
@@ -31,6 +32,7 @@ const AuthProvider = ({ children }) => {
         });
       } else {
         localStorage.removeItem("access-token");
+        console.log("token has been removed");
       }
     });
     return () => {
