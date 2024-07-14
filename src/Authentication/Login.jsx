@@ -26,13 +26,15 @@ const Login = () => {
       .then(() => {
         alert("logged in");
       })
+      .then(() => {
+        location.reload();
+      })
       .catch((e) => console.log(e.message));
   };
 
   const path = useLocation().state;
   // console.log(path)
-  
-  
+
   if (user) {
     return <Navigate to={path || "/"}></Navigate>;
   } else {

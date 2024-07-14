@@ -58,10 +58,10 @@ const DashboardHome = () => {
                  <Row key={req._id} reqData={req} refetch={refetch}></Row>
                 );
               })}
+              <tr>
+                <td></td>
+              </tr>
             </tbody>
-            <tfoot>
-              <tr></tr>
-            </tfoot>
           </table>
         </div>
         

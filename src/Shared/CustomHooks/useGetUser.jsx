@@ -6,6 +6,7 @@ import { authContext } from "../../Authentication/AuthProvider";
 const useGetUser = () => {
   // console.log(localStorage.getItem("access-token"));
   const { user } = useContext(authContext);
+  // console.log(user.email);
   const {
     data: currentUser = {},
     isPending,
@@ -22,7 +23,7 @@ const useGetUser = () => {
         },
       }),
   });
-
+  // console.log(currentUser.data);
   return { data: currentUser.data, isPending, refetch };
 };
 

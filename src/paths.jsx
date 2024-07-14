@@ -20,6 +20,7 @@ import AdminDashboardHome from "./Dashboard/Admin/AdminDashboardHome.jsx";
 import DashboardWrapper from "./Dashboard/DashboardWrapper.jsx";
 import AllUsers from "./Dashboard/Admin/allUsers/AllUsers.jsx";
 import Forbidden from "./Shared/Forbidden.jsx";
+import AllBloodDonationReqs from "./Dashboard/Admin/AllBloodDonationReqs/AllBloodDonationReqs.jsx";
 
 const routes = createBrowserRouter([
   { path: "/forbidden", element: <Forbidden></Forbidden> },
@@ -101,6 +102,10 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/all-users",
         element: <AllUsers></AllUsers>,
+      },
+      {
+        path: "/dashboard/all-blood-donation-request",
+        element: <AllBloodDonationReqs></AllBloodDonationReqs>
       },
     ],
   },

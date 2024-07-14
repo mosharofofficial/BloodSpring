@@ -31,7 +31,7 @@ const Register = () => {
     const form = event.target;
 
     return {
-      email: form.email.value,
+      email: form.email.value.toLowerCase(),
       name: form.name.value,
       avatar: form.avatar.value,
       bloodGroup: form.bloodGroup.value,
@@ -63,6 +63,7 @@ const Register = () => {
             }
           });
         })
+        
         .catch((e) => console.log(e.message));
     } else {
       alert("passwords dont match !");
