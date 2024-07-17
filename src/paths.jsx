@@ -21,6 +21,9 @@ import DashboardWrapper from "./Dashboard/DashboardWrapper.jsx";
 import AllUsers from "./Dashboard/Admin/allUsers/AllUsers.jsx";
 import Forbidden from "./Shared/Forbidden.jsx";
 import AllBloodDonationReqs from "./Dashboard/Admin/AllBloodDonationReqs/AllBloodDonationReqs.jsx";
+import ContentManagement from "./Dashboard/Admin/ContentManagement/ContentManagement.jsx";
+import AdminFilter from "./Dashboard/Admin/AdminFilter.jsx";
+import AddBlog from "./Dashboard/Admin/ContentManagement/AddBlog.jsx";
 
 const routes = createBrowserRouter([
   { path: "/forbidden", element: <Forbidden></Forbidden> },
@@ -101,11 +104,35 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/all-users",
-        element: <AllUsers></AllUsers>,
+        element: (
+          <AdminFilter>
+            <AllUsers></AllUsers>
+          </AdminFilter>
+        ),
       },
       {
         path: "/dashboard/all-blood-donation-request",
-        element: <AllBloodDonationReqs></AllBloodDonationReqs>
+        element: (
+          <AdminFilter>
+            <AllBloodDonationReqs></AllBloodDonationReqs>
+          </AdminFilter>
+        ),
+      },
+      {
+        path: "/dashboard/content-management",
+        element: (
+          <AdminFilter>
+            <ContentManagement></ContentManagement>
+          </AdminFilter>
+        ),
+      },
+      {
+        path: "/dashboard/content-management/add-blog",
+        element: (
+          <AdminFilter>
+            <AddBlog></AddBlog>
+          </AdminFilter>
+        ),
       },
     ],
   },
