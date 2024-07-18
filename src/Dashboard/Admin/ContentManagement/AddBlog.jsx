@@ -21,7 +21,12 @@ const AddBlog = () => {
     };
     myAxiosSecure
       .post(`/addBlog?email=${user.email}`, { blog })
-      .then((res) => console.log(res.data));
+      .then((res) => {
+        if (res.data.insertedId) {
+          alert("Blog added to database .");
+        }
+      })
+      .catch((e) => console.log(e.message));
   };
 
   if (!isPending) {
