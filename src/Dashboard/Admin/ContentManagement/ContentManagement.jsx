@@ -50,6 +50,11 @@ const ContentManagement = () => {
                   className="dropdown-content gap-1 menu bg-white rounded-box z-[1] w-[150px] p-1 shadow border-[1px]"
                 >
                   <li>
+                    <button onClick={()=>setFilter(undefined)} className="btn button px-0 min-h-[0px] h-[30px]">
+                      All
+                    </button>
+                  </li>
+                  <li>
                     <button onClick={()=>setFilter('draft')} className="btn button px-0 min-h-[0px] h-[30px]">
                       Draft
                     </button>
