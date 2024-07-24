@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import { useContext,  useState } from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { myAxiosSecure } from "../../../Axios.config";
@@ -17,22 +17,18 @@ const ContentManagement = () => {
   } = useQuery({
     queryKey: ["getAllBlogs"],
     queryFn: () =>
+      (filter || !filter) &&
       myAxiosSecure
-        .get(`/getBlogs?email=${user.email}&status=${filter}`)
+        .get(`/getBlogs?email=${user.email}`)
         .then((res) => res.data),
   });
 
 
- useEffect(()=>{
-  refetch();
- }, [filter])
 
-  
 
   if (!isPending) {
     return (
       <div className="bg-crimson  text-white pb-5">
-        {console.log(rows)}
         <div className=" border-b-[4px] border-white mb-5 py-5 px-5 flex justify-between items-center">
           <h1 className="text-4xl font-bold  ">Content Management</h1>
           <button
@@ -47,21 +43,19 @@ const ContentManagement = () => {
             <div className="flex justify-center ">
               <div className="dropdown dropdown-right dropdown-start">
                 <div tabIndex={0} role="button" className="btn button px-2 m-0">
-                  <span className="text-2xl">
-                    Filter
-                  </span>
+                  <span className="text-2xl">Filter</span>
                 </div>
                 <ul
                   tabIndex={0}
                   className="dropdown-content gap-1 menu bg-white rounded-box z-[1] w-[150px] p-1 shadow border-[1px]"
                 >
                   <li>
-                    <button className="btn button px-0 min-h-[0px] h-[30px]">
+                    <button onClick={()=>setFilter('draft')} className="btn button px-0 min-h-[0px] h-[30px]">
                       Draft
                     </button>
                   </li>
                   <li>
-                    <button className="btn button px-0 min-h-[0px] h-[30px]">
+                    <button onClick={()=>setFilter('published')} className="btn button px-0 min-h-[0px] h-[30px]">
                       Published
                     </button>
                   </li>
@@ -81,15 +75,27 @@ const ContentManagement = () => {
                 </tr>
               </thead>
               <tbody>
-                {rows.map((rowData) => {
-                  return (
-                    <BlogRow
-                      key={rowData._id}
-                      rowData={rowData}
-                      refetch={refetch}
-                    ></BlogRow>
-                  );
-                })}
+                {!filter
+                  ? rows.map((rowData) => {
+                      return (
+                        <BlogRow
+                          key={rowData._id}
+                          rowData={rowData}
+                          refetch={refetch}
+                        ></BlogRow>
+                      );
+                    })
+                  : rows
+                      .filter((row) => row.status === filter)
+                      .map((rowData) => {
+                        return (
+                          <BlogRow
+                            key={rowData._id}
+                            rowData={rowData}
+                            refetch={refetch}
+                          ></BlogRow>
+                        );
+                      })}
                 <tr>
                   <td></td>
                 </tr>
