@@ -13,9 +13,9 @@ const DashboardWrapper = () => {
         if (currentUser.role === "donor") {
             return <DashboardHome ></DashboardHome>;
         }    
-        else if (currentUser.role === "admin") {
-            return <AdminDashboardHome user={currentUser}></AdminDashboardHome>;
-        }
+        // else if (currentUser.role === "admin") {
+        //     return <AdminDashboardHome user={currentUser}></AdminDashboardHome>;
+        // }
         else {
             return <AdminDashboardHome user={currentUser}></AdminDashboardHome>;
             

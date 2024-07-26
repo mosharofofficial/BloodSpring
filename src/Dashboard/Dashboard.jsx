@@ -64,7 +64,7 @@ const Dashboard = () => {
       <Link to={"/dashboard/all-blood-donation-request"}>
         <li
           className={`text-white text-xl border-[4px] flex justify-center border-crimson hover:bg-[rgba(0,0,0,0.1)] active:border-white transition-colors duration-200 p-2 rounded-xl px-4 ${
-            !isPending && userData.role !== "admin" && "hidden"
+            !isPending && userData.role === "donor" && "hidden"
           }`}
         >
           All Donation Requests

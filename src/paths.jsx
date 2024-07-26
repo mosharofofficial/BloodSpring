@@ -112,11 +112,7 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/all-blood-donation-request",
-        element: (
-          <AdminFilter>
-            <AllBloodDonationReqs></AllBloodDonationReqs>
-          </AdminFilter>
-        ),
+        element: <AllBloodDonationReqs></AllBloodDonationReqs>,
       },
       {
         path: "/dashboard/content-management",

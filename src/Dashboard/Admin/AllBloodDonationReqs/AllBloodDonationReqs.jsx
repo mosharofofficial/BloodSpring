@@ -34,7 +34,9 @@ const AllBloodDonationReqs = () => {
     }
   }, [isPending]);
 
-  if (currentUser.role !== "admin") {
+  
+
+  if (currentUser.role === "donor") {
     return <Navigate to={"/forbidden"}></Navigate>;
   }
 
@@ -67,7 +69,14 @@ const AllBloodDonationReqs = () => {
               <tbody>
                 {requestsData.map((req) => {
                   return (
-                    <Row key={req._id} reqData={req} refetch={refetch}></Row>
+                    <Row
+                      key={req._id}
+                      reqData={req}
+                      role={currentUser.role}
+                      refetch={refetch}
+                      currentUser={currentUser}
+                      // updateStatus={updateStatus}
+                    ></Row>
                   );
                 })}
                 <tr>
