@@ -21,7 +21,6 @@ const ContentManagement = () => {
   } = useQuery({
     queryKey: ["getAllBlogs"],
     queryFn: () =>
-      (filter || !filter) &&
       myAxiosSecure
         .get(`/getBlogs?email=${user.email}`)
         .then((res) => res.data),
@@ -35,7 +34,7 @@ const ContentManagement = () => {
 
   if (!isPending && !userPending) {
     return (
-      <div className="bg-crimson  text-white pb-5">
+      <div className="bg-crimson  text-white pb-5 h-screen">
         <div className=" border-b-[4px] border-white mb-5 py-5 px-5 flex justify-between items-center">
           <h1 className="text-4xl font-bold  ">Content Management</h1>
           <button
@@ -46,7 +45,7 @@ const ContentManagement = () => {
           </button>
         </div>
         <div className="bg-crimson text-white">
-          <div className="overflow-x-auto ">
+          <div className="overflow-x-auto min-h-[600px]">
             <div className="flex justify-center ">
               <div className="dropdown dropdown-right dropdown-start">
                 <div tabIndex={0} role="button" className="btn button px-2 m-0">
