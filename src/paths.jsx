@@ -117,9 +117,7 @@ const routes = createBrowserRouter([
       {
         path: "/dashboard/content-management",
         element: (
-          <AdminFilter>
             <ContentManagement></ContentManagement>
-          </AdminFilter>
         ),
       },
       {

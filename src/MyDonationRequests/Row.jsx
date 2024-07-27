@@ -1,7 +1,6 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { myAxiosSecure } from "../Axios.config";
-import { BsThreeDots } from "react-icons/bs";
 
 const Row = ({
   reqData,
@@ -86,7 +85,7 @@ const Row = ({
         </button>
       </td>
       <td className={`flex flex-col p-0 ${role !== "volunteer" && "hidden"}`}>
-        <div className="dropdown dropdown-left dropdown-end">
+        <div className="dropdown dropdown-left dropdown-start">
           <div tabIndex={0} role="button" className="btn button px-2 m-0">
             <span className="">
               {/* <BsThreeDots /> */}
@@ -103,6 +102,22 @@ const Row = ({
                 className="btn button px-0 min-h-[0px] h-[30px]"
               >
                 Pending
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => updateStatus("done", reqData._id)}
+                className="btn button px-0 min-h-[0px] h-[30px]"
+              >
+                Done
+              </button>
+            </li>
+            <li>
+              <button
+                onClick={() => updateStatus("canceled", reqData._id)}
+                className="btn button px-0 min-h-[0px] h-[30px]"
+              >
+                Canceled
               </button>
             </li>
             <li>

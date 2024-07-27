@@ -5,7 +5,7 @@ import { BsThreeDots } from "react-icons/bs";
 import { myAxiosSecure } from "../../../Axios.config";
 import { authContext } from "../../../Authentication/AuthProvider";
 
-const BlogRow = ({ rowData, refetch }) => {
+const BlogRow = ({ rowData, refetch, currentUser }) => {
   const { user } = useContext(authContext);
 
   const publish = () => {
@@ -59,7 +59,8 @@ const BlogRow = ({ rowData, refetch }) => {
             tabIndex={0}
             className="dropdown-content gap-1 menu bg-white rounded-box z-[1] w-[150px] p-1 shadow border-[1px]"
           >
-            <li>
+            {/* admin only */}
+            <li className={` ${currentUser.role !== "admin" && "hidden"}`}>
               <button
                 onClick={rowData?.status === "draft" ? publish : unpublish}
                 className="btn button px-0 min-h-[0px] h-[30px]"
@@ -67,7 +68,17 @@ const BlogRow = ({ rowData, refetch }) => {
                 {rowData?.status === "draft" ? "Publish" : "Unpublish"}
               </button>
             </li>
-            <li>
+
+            {/* volunteer only */}
+            <li className={` ${currentUser.role !== "volunteer" && "hidden"}`}>
+              <button
+                onClick={unpublish}
+                className="btn button px-0 min-h-[0px] h-[30px]"
+              >
+                {"Unpublish"}
+              </button>
+            </li>
+            <li className={`${currentUser.role !== "admin" && " hidden"}`}>
               <button
                 onClick={deleteBlog}
                 className="btn button px-0 min-h-[0px] h-[30px]"
@@ -84,6 +95,7 @@ const BlogRow = ({ rowData, refetch }) => {
 
 BlogRow.propTypes = {
   rowData: PropTypes.object,
+  currentUser: PropTypes.object,
   refetch: PropTypes.func,
 };
 

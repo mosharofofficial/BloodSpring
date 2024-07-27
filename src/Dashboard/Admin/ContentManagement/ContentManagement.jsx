@@ -1,12 +1,16 @@
 import { useContext,  useState } from "react";
 import PropTypes from "prop-types";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { myAxiosSecure } from "../../../Axios.config";
 import { authContext } from "../../../Authentication/AuthProvider";
 import BlogRow from "./BlogRow";
 import { useQuery } from "@tanstack/react-query";
+import useGetUser from "../../../Shared/CustomHooks/useGetUser";
 
 const ContentManagement = () => {
+
+    const { data: currentUser = {}, isPending:userPending } = useGetUser();
+  
   const navigate = useNavigate();
   const { user } = useContext(authContext);
   const [filter, setFilter] = useState(undefined);
@@ -24,9 +28,12 @@ const ContentManagement = () => {
   });
 
 
+  if (currentUser.role === "donor") {
+    return <Navigate to={"/forbidden"}></Navigate>;
+  }
 
 
-  if (!isPending) {
+  if (!isPending && !userPending) {
     return (
       <div className="bg-crimson  text-white pb-5">
         <div className=" border-b-[4px] border-white mb-5 py-5 px-5 flex justify-between items-center">
@@ -87,6 +94,7 @@ const ContentManagement = () => {
                           key={rowData._id}
                           rowData={rowData}
                           refetch={refetch}
+                          currentUser={currentUser}
                         ></BlogRow>
                       );
                     })
