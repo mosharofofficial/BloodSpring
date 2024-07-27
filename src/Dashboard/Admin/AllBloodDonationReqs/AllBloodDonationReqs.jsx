@@ -61,6 +61,14 @@ const AllBloodDonationReqs = () => {
                 >
                   <li>
                     <button
+                      onClick={() => setFilter(undefined)}
+                      className="btn button px-0 min-h-[0px] h-[30px]"
+                    >
+                  All
+                    </button>
+                  </li>
+                  <li>
+                    <button
                       onClick={() => setFilter("done")}
                       className="btn button px-0 min-h-[0px] h-[30px]"
                     >
