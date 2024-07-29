@@ -5,6 +5,7 @@ import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { TiBatteryLow } from "react-icons/ti";
 import useGetUser from "../../../Shared/CustomHooks/useGetUser";
+import { Navigate } from "react-router-dom";
 
 const AddBlog = () => {
   const { data: user = {}, isPending } = useGetUser();
@@ -28,6 +29,10 @@ const AddBlog = () => {
       })
       .catch((e) => console.log(e.message));
   };
+
+  if (!isPending && user.role === "donor") {
+    return <Navigate to={"/forbidden"}></Navigate>;
+  }
 
   if (!isPending) {
     return (

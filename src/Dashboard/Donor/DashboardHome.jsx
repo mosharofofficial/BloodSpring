@@ -5,11 +5,14 @@ import { myAxios } from "../../Axios.config";
 import { authContext } from "../../Authentication/AuthProvider";
 import { useNavigate } from "react-router-dom";
 import Row from "../../MyDonationRequests/Row";
+import useGetUser from "../../Shared/CustomHooks/useGetUser";
+import MyDonationRow from "../../MyDonationRequests/MyDonationRow";
 
 const DashboardHome = () => {
   const navigate = useNavigate();
 
   const { user: firebaseUser } = useContext(authContext);
+  const {data:currentUser = {}, isPending:userPending, refetch:userRefetch} = useGetUser();
 
   const {
     data: latestThree = [],
@@ -27,8 +30,8 @@ const DashboardHome = () => {
         .then((res) => res.data),
   });
 
-  return (
-    <div className="bg-crimson  text-white pb-5">
+  if(!isPending && !userPending){return (
+    <div className="bg-crimson  text-white pb-5 h-screen">
       <h1 className="text-4xl font-bold py-5 text-center border-b-[4px] border-white mb-5">
         Welcome {firebaseUser?.displayName}
         {/* {console.log(latestThree)} */}
@@ -55,7 +58,12 @@ const DashboardHome = () => {
             <tbody>
               {latestThree.map((req) => {
                 return (
-                 <Row key={req._id} reqData={req} refetch={refetch}></Row>
+                  <MyDonationRow
+                    key={req._id}
+                    reqData={req}
+                    refetch={refetch}
+                    currentUser={currentUser}
+                  ></MyDonationRow>
                 );
               })}
               <tr>
@@ -75,7 +83,7 @@ const DashboardHome = () => {
         </div>
       </div>
     </div>
-  );
+  );}
 };
 
 DashboardHome.propTypes = {};

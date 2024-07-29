@@ -1,12 +1,12 @@
+import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { myAxiosSecure } from "../Axios.config";
 import { BsThreeDots } from "react-icons/bs";
 
-const Row = ({
+const MyDonationRow = ({
   reqData,
   refetch,
-  role,
   currentUser,
   //  updateStatus
 }) => {
@@ -72,7 +72,11 @@ const Row = ({
           </ul>
         )}
       </td>
-    
+      <td
+        className={`flex flex-col p-0 ${
+          currentUser.role === "volunteer" && "hidden"
+        }`}
+      ></td>
       <td className={`flex flex-col p-0 `}>
         <div className="dropdown dropdown-left dropdown-start">
           <div tabIndex={0} role="button" className="btn button px-2 m-0">
@@ -84,7 +88,7 @@ const Row = ({
             tabIndex={0}
             className="dropdown-content gap-1 menu bg-white rounded-box z-[1] w-[150px] p-1 shadow border-[1px]"
           >
-            <li>
+            <li className={`${currentUser.role === "donor" && "hidden"}`}>
               <button
                 onClick={() => updateStatus("in progress", reqData._id)}
                 className="btn button px-0 min-h-[0px] h-[30px]"
@@ -92,7 +96,7 @@ const Row = ({
                 In Progress
               </button>
             </li>
-            <li>
+            <li className={`${currentUser.role === "donor" && "hidden"}`}>
               <button
                 onClick={() => updateStatus("pending", reqData._id)}
                 className="btn button px-0 min-h-[0px] h-[30px]"
@@ -129,7 +133,7 @@ const Row = ({
               </button>
             </li>
 
-            <li className={`${currentUser.role !== 'admin' && "hidden"}`}>
+            <li>
               <button
                 className="btn button min-h-8  h-auto"
                 onClick={() =>
@@ -139,7 +143,7 @@ const Row = ({
                 Edit
               </button>
             </li>
-            <li className={`${currentUser.role !== 'admin' && "hidden"}`}>
+            <li>
               <button
                 onClick={() =>
                   navigate(`/dashboard/request-details/${reqData._id}`)
@@ -149,7 +153,7 @@ const Row = ({
                 View
               </button>
             </li>
-            <li className={`${currentUser.role !== 'admin' && "hidden"}`}>
+            <li>
               <button
                 onClick={handleDelete}
                 className="btn button min-h-8  h-auto"
@@ -164,7 +168,7 @@ const Row = ({
   );
 };
 
-Row.propTypes = {
+MyDonationRow.propTypes = {
   reqData: PropTypes.object,
   currentUser: PropTypes.object,
   refetch: PropTypes.func,
@@ -172,4 +176,4 @@ Row.propTypes = {
   role: PropTypes.string,
 };
 
-export default Row;
+export default MyDonationRow;

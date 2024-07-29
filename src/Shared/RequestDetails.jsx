@@ -52,7 +52,7 @@ const RequestDetails = () => {
                       name="email"
                       type="email"
                       placeholder="email"
-                      defaultValue={user.email}
+                      defaultValue={pastData.data.email}
                       disabled
                       className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none disabled:text-crimson disabled:bg-white"
                       required
@@ -68,7 +68,7 @@ const RequestDetails = () => {
                       name="name"
                       type="text"
                       placeholder="name"
-                      defaultValue={user.displayName}
+                      defaultValue={pastData.data.name}
                       disabled
                       className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none disabled:text-crimson disabled:bg-white"
                       required

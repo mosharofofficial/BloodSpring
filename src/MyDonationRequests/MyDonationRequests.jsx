@@ -2,17 +2,24 @@ import PropTypes from "prop-types";
 import useGetRequests from "../Shared/CustomHooks/useGetRequests";
 import { useEffect, useState } from "react";
 import Row from "./Row";
+import useGetUser from "../Shared/CustomHooks/useGetUser";
+import MyDonationRow from "./MyDonationRow";
 
 const MyDonationRequests = () => {
   const { data: requestsData, isPending, refetch } = useGetRequests();
   const [filter, setFilter] = useState(undefined);
 
-  // useEffect(()=>{
-  //   console.log(isPending);
-  //   !isPending && console.log(requestsData)
-  // },[isPending])
+  const {
+    data: currentUser = {},
+    isPending: userPending,
+    refetch: userRefetch,
+  } = useGetUser();
 
-  if (!isPending) {
+  useEffect(() => {
+    currentUser;
+  }, [currentUser]);
+
+  if (!isPending && !userPending) {
     return (
       <div className="bg-crimson min-h-screen ">
         {/* {console.log(isPending)} */}
@@ -22,7 +29,7 @@ const MyDonationRequests = () => {
           My Donation Requests
         </h1>
         <div className="bg-crimson text-white">
-          <div className="overflow-x-auto min-h-[600px]">
+          <div className="overflow-x-auto ">
             <div className="flex justify-center ">
               <div className="dropdown dropdown-right dropdown-start">
                 <div tabIndex={0} role="button" className="btn button px-2 m-0">
@@ -95,23 +102,25 @@ const MyDonationRequests = () => {
                 {!filter
                   ? requestsData.map((req) => {
                       return (
-                        <Row
+                        <MyDonationRow
                           key={req._id}
                           reqData={req}
                           refetch={refetch}
-                        ></Row>
+                          currentUser={currentUser}
+                        ></MyDonationRow>
                       );
                     })
                   : requestsData
                       .filter((row) => row.status === filter)
                       .map((rowData) => {
                         return (
-                          <Row
+                          <MyDonationRow
                             key={rowData._id}
                             reqData={rowData}
+                            currentUser={currentUser}
                             refetch={refetch}
                             // updateStatus={updateStatus}
-                          ></Row>
+                          ></MyDonationRow>
                           // console.log(rowData)
                         );
                       })}

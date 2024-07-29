@@ -20,8 +20,6 @@ const CreateDonationRequest = () => {
   const [time, setTime] = useState("");
 
   useEffect(() => {
-  
-
     const selectedDistrict = districts.find(
       (districtObject) => districtObject["name"] === district
     );
@@ -53,7 +51,9 @@ const CreateDonationRequest = () => {
       time: time,
       message: form.message.value,
       status: "pending",
-      timestamp: Date.now()
+      timestamp: Date.now(),
+      donorName: "none",
+      donorEmail: "none",
     };
   };
 
@@ -94,11 +94,10 @@ const CreateDonationRequest = () => {
     }
   };
   if (!isPending && !(Object.keys(data).length === 0)) {
-
-    if (!(data?.isActive)) {
-      return <BlockedPage></BlockedPage>
+    if (!data?.isActive) {
+      return <BlockedPage></BlockedPage>;
     }
-    
+
     return (
       <div className="bg-crimson min-h-screen ">
         {/* {console.log(date)}
