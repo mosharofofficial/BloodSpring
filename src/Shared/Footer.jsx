@@ -13,7 +13,7 @@ const Footer = () => {
             <MdBloodtype />
           </span>
 
-          <p>BloodSpring Industries Ltd.</p>
+          <p className="mx-auto">BloodSpring Ltd.</p>
           <div className=" flex flex-row flex-nowrap gap-7 mt-2 text-3xl self-center">
             <FaFacebook />
             <FaXTwitter />

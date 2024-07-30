@@ -3,6 +3,9 @@ import upazilas from "../Authentication/Register/upazilas";
 import districts from "../Authentication/Register/districts";
 import { useEffect, useState } from "react";
 import Table from "./Table";
+import { useQuery } from "@tanstack/react-query";
+import { myAxios } from "../Axios.config";
+import { json } from "react-router-dom";
 
 const Search = () => {
   const [district, setDistrict] = useState(null);
@@ -24,6 +27,12 @@ const Search = () => {
 
   const [donorList, setDonorList] = useState([]);
 
+  // useEffect(() => {
+  //   myAxios
+  //     .get(`/searchDonor?donorInfo=${JSON.stringify(form)}`)
+  //     .then((res) => console.log(res.data));
+  // }, [form]);
+
   const getFormObject = (event) => {
     const form = event.target;
 
@@ -40,11 +49,19 @@ const Search = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = getFormObject(e);
-    console.log(form);
+    // console.log(form);
+    myAxios;
+    myAxios
+      // .post(
+      //   `/searchDonor?bloodGroup=${form.bloodGroup}&district=${form.district}&upazila=${form.upazila}`
+      // )
+      .post(`/searchDonor`, {form})
+      .then((res) => setDonorList(res.data));
   };
 
   return (
     <div className=" min-h-[calc(100vh-390px)]">
+      {console.log(donorList)}
       <div className=" bg-crimson">
         <h1 className="text-3xl text-white font-bold pt-6 text-center">
           Search for Donors{" "}
@@ -68,8 +85,8 @@ const Search = () => {
                 <option value={"disabled"} disabled>
                   Select Blood Group
                 </option>
-                <option value={"A+"}>a+</option>
-                <option value={"A-"}>a-</option>
+                <option value={"a+"}>a+</option>
+                <option value={"a-"}>a-</option>
                 <option value={"b+"}>b+</option>
                 <option value={"b-"}>b-</option>
                 <option value={"ab+"}>ab+</option>
@@ -128,13 +145,13 @@ const Search = () => {
 
           <div className="flex justify-center items-center mt-2 ">
             <button className="btn button text-lg px-6 py-2 h-auto w-auto">
-              Submit
+              Search
             </button>
           </div>
         </form>
       </div>
       <div className="my-10 bg-crimson p-5">
-        <Table></Table>
+        <Table rows={donorList}></Table>
       </div>
     </div>
   );
