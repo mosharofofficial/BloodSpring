@@ -55,13 +55,12 @@ const Search = () => {
       // .post(
       //   `/searchDonor?bloodGroup=${form.bloodGroup}&district=${form.district}&upazila=${form.upazila}`
       // )
-      .post(`/searchDonor`, {form})
+      .post(`/searchDonor`, { form })
       .then((res) => setDonorList(res.data));
   };
 
   return (
     <div className=" min-h-[calc(100vh-390px)]">
-      {console.log(donorList)}
       <div className=" bg-crimson">
         <h1 className="text-3xl text-white font-bold pt-6 text-center">
           Search for Donors{" "}

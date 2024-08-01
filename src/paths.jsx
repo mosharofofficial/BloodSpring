@@ -45,6 +45,14 @@ const routes = createBrowserRouter([
         element: <DonationReqs></DonationReqs>,
       },
       {
+        path: "/reqDetails/:id",
+        element: (
+          <PrivateRouteProvider>
+            <RequestDetails></RequestDetails>
+          </PrivateRouteProvider>
+        ),
+      },
+      {
         path: "/blogs",
         element: <Blogs></Blogs>,
       },
@@ -116,15 +124,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/dashboard/content-management",
-        element: (
-            <ContentManagement></ContentManagement>
-        ),
+        element: <ContentManagement></ContentManagement>,
       },
       {
         path: "/dashboard/content-management/add-blog",
-        element: (
-            <AddBlog></AddBlog>
-        ),
+        element: <AddBlog></AddBlog>,
       },
     ],
   },
