@@ -9,7 +9,7 @@ const DonationReqs = () => {
 
   useEffect(() => {
     myAxios
-      .get("/allDonationRequest")
+      .get("/allPendingRequest")
       .then((res) => setRequests(res.data))
       .catch((e) => console.log(e.message));
   }, []);

@@ -3,9 +3,17 @@ import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import { myAxiosSecure } from "../Axios.config";
-import { authContext } from "../Authentication/AuthProvider";
+import useGetUser from "./CustomHooks/useGetUser";
+import Swal from "sweetalert2";
+import withReactContent from "sweetalert2-react-content";
 const RequestDetails = () => {
-  const { user } = useContext(authContext);
+  const MySwal = withReactContent(Swal);
+
+  const {
+    data: user,
+    isPending: userPending,
+    refetch: userRefetch,
+  } = useGetUser();
   const { id } = useParams();
 
   const {
@@ -25,10 +33,129 @@ const RequestDetails = () => {
       }),
   });
 
-  if (!isPending) {
+  const handleDonate = (e) => {
+    e.preventDefault();
+
+    MySwal.fire({
+      title: "Are you sure?",
+      html: (
+        <div className="bg-crimson border-y-[4px] py-5 flex flex-col  gap-2 justify-start px-5">
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-xl  text-white">
+                Donor Email :
+              </span>
+            </label>
+            <input
+              name="email"
+              type="email"
+              placeholder="email"
+              defaultValue={user.email}
+              disabled
+              className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none disabled:text-crimson disabled:bg-white"
+              required
+            />
+          </div>
+          <div className="form-control">
+            <label className="label">
+              <span className="label-text text-xl  text-white">
+                Donor Name :
+              </span>
+            </label>
+            <input
+              name="name"
+              type="text"
+              placeholder="name"
+              defaultValue={user.name}
+              disabled
+              className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none disabled:text-crimson disabled:bg-white"
+              required
+            />
+          </div>
+        </div>
+      ),
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes Confirm!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        myAxiosSecure
+          .patch(`/toInProgress?email=${user.email}`, {
+            headers: {
+              authorization: `Bearer ${localStorage.getItem("access-token")}`,
+            },
+            status: "in progress",
+            id,
+            donorEmail: user.email,
+            donorName: user.name,
+          })
+          .then((res) => {
+            if (res.data.modifiedCount === 1) {
+              Swal.fire({
+                title: "Confirmed!",
+                text: "Your donation has been confirmed.",
+                icon: "success",
+              });
+            }
+          })
+          .catch((e) => console.log(e.message));
+      }
+    });
+
+    // Swal.fire({
+    //   title: "Are you sure?",
+
+    //   icon: "warning",
+    //   showCancelButton: true,
+    //   confirmButtonColor: "#3085d6",
+    //   cancelButtonColor: "#d33",
+    //   confirmButtonText: "Yes Confirm!",
+    // }).then((result) => {
+    //   if (result.isConfirmed) {
+    //     myAxiosSecure
+    //       .patch(`/toInProgress?email=${user.email}`, {
+    //         headers: {
+    //           authorization: `Bearer ${localStorage.getItem("access-token")}`,
+    //         },
+    //         status: "in progress",
+    //         id,
+    //         donorEmail: user.email,
+    //         donorName: user.name,
+    //       })
+    //       .then((res) => console.log(res.data))
+    //       .then((res) => {
+    //         if (res.modifiedCount === 1) {
+    //           Swal.fire({
+    //             title: "Deleted!",
+    //             text: "Your file has been deleted.",
+    //             icon: "success",
+    //           });
+    //         }
+    //       })
+    //       .catch((e) => console.log(e.message));
+    //   }
+    // });
+
+    // myAxiosSecure
+    //   .patch(`/toInProgress?email=${user.email}`, {
+    //     headers: {
+    //       authorization: `Bearer ${localStorage.getItem("access-token")}`,
+    //     },
+    //     status: "in progress",
+    //     id,
+    //     donorEmail: user.email,
+    //     donorName: user.name,
+    //   })
+    //   .then((res) => console.log(res.data))
+    //   .catch((e) => console.log(e.message));
+  };
+
+  if (!isPending && !userPending) {
     return (
       <div className="bg-crimson min-h-screen ">
-        {/* {console.log(pastData.data)} */}
+        {/* {console.log(user)} */}
 
         <h1 className="text-3xl text-white border-b-[4px] w-full text-center p-5 ">
           Donation Request Details
@@ -205,7 +332,7 @@ const RequestDetails = () => {
                       disabled
                       type="text"
                       placeholder="Recipient's name"
-                      defaultValue={((pastData.data.time))}
+                      defaultValue={pastData.data.time}
                       className="text-2xl px-[10px] py-[5px] rounded-[5px] text-crimson focus:outline-none  disabled:text-crimson disabled:bg-white"
                       required
                     />
@@ -226,6 +353,11 @@ const RequestDetails = () => {
                       required
                     ></textarea>
                   </div>
+                </div>
+                <div className="flex items-center justify-center mt-5">
+                  <button onClick={handleDonate} className="button btn px-10">
+                    Donate
+                  </button>
                 </div>
               </div>
             </form>

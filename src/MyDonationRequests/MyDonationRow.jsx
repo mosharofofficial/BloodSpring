@@ -63,7 +63,7 @@ const MyDonationRow = ({
       <td className="text-sm">{reqData.time}</td>
       <td className="text-sm">{reqData.status}</td>
       <td className="text-sm">
-        {reqData.status !== "in progress" ? (
+        {reqData.status === "pending" || reqData.status === "canceled" ? (
           "none"
         ) : (
           <ul>

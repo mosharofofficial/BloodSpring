@@ -63,7 +63,7 @@ const Row = ({
       <td className="text-sm">{reqData.time}</td>
       <td className="text-sm">{reqData.status}</td>
       <td className="text-sm">
-        {reqData.status !== "in progress" ? (
+        {reqData.status === "pending" || reqData.status === "canceled" ? (
           "none"
         ) : (
           <ul>
@@ -72,7 +72,7 @@ const Row = ({
           </ul>
         )}
       </td>
-    
+
       <td className={`flex flex-col p-0 `}>
         <div className="dropdown dropdown-left dropdown-start">
           <div tabIndex={0} role="button" className="btn button px-2 m-0">
@@ -129,7 +129,7 @@ const Row = ({
               </button>
             </li>
 
-            <li className={`${currentUser.role !== 'admin' && "hidden"}`}>
+            <li className={`${currentUser.role !== "admin" && "hidden"}`}>
               <button
                 className="btn button min-h-8  h-auto"
                 onClick={() =>
@@ -139,7 +139,7 @@ const Row = ({
                 Edit
               </button>
             </li>
-            <li className={`${currentUser.role !== 'admin' && "hidden"}`}>
+            <li className={`${currentUser.role !== "admin" && "hidden"}`}>
               <button
                 onClick={() =>
                   navigate(`/dashboard/request-details/${reqData._id}`)
@@ -149,7 +149,7 @@ const Row = ({
                 View
               </button>
             </li>
-            <li className={`${currentUser.role !== 'admin' && "hidden"}`}>
+            <li className={`${currentUser.role !== "admin" && "hidden"}`}>
               <button
                 onClick={handleDelete}
                 className="btn button min-h-8  h-auto"
