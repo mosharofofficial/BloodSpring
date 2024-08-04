@@ -58,7 +58,11 @@ const routes = createBrowserRouter([
       },
       {
         path: "/blogs/:blogId",
-        element: <Blog></Blog>,
+        element: (
+          <PrivateRouteProvider>
+            <Blog></Blog>
+          </PrivateRouteProvider>
+        ),
       },
     ],
   },

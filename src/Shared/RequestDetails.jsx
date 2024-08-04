@@ -104,52 +104,6 @@ const RequestDetails = () => {
       }
     });
 
-    // Swal.fire({
-    //   title: "Are you sure?",
-
-    //   icon: "warning",
-    //   showCancelButton: true,
-    //   confirmButtonColor: "#3085d6",
-    //   cancelButtonColor: "#d33",
-    //   confirmButtonText: "Yes Confirm!",
-    // }).then((result) => {
-    //   if (result.isConfirmed) {
-    //     myAxiosSecure
-    //       .patch(`/toInProgress?email=${user.email}`, {
-    //         headers: {
-    //           authorization: `Bearer ${localStorage.getItem("access-token")}`,
-    //         },
-    //         status: "in progress",
-    //         id,
-    //         donorEmail: user.email,
-    //         donorName: user.name,
-    //       })
-    //       .then((res) => console.log(res.data))
-    //       .then((res) => {
-    //         if (res.modifiedCount === 1) {
-    //           Swal.fire({
-    //             title: "Deleted!",
-    //             text: "Your file has been deleted.",
-    //             icon: "success",
-    //           });
-    //         }
-    //       })
-    //       .catch((e) => console.log(e.message));
-    //   }
-    // });
-
-    // myAxiosSecure
-    //   .patch(`/toInProgress?email=${user.email}`, {
-    //     headers: {
-    //       authorization: `Bearer ${localStorage.getItem("access-token")}`,
-    //     },
-    //     status: "in progress",
-    //     id,
-    //     donorEmail: user.email,
-    //     donorName: user.name,
-    //   })
-    //   .then((res) => console.log(res.data))
-    //   .catch((e) => console.log(e.message));
   };
 
   if (!isPending && !userPending) {

@@ -46,7 +46,7 @@ const BlogRow = ({ rowData, refetch, currentUser }) => {
 
   return (
     <tr>
-      <td>{HTMLReactParser(rowData?.title)}</td>
+      <td className="text-lg">{HTMLReactParser(rowData?.title)}</td>
       <td>{rowData?.status}</td>
       <th>
         <div className="dropdown dropdown-left dropdown-end">

@@ -22,7 +22,7 @@ const ContentManagement = () => {
     queryKey: ["getAllBlogs"],
     queryFn: () =>
       myAxiosSecure
-        .get(`/getBlogs?email=${user.email}`)
+        .get(`/getBlogsContentManagement?email=${user.email}`)
         .then((res) => res.data),
   });
 
