@@ -6,6 +6,7 @@ import { myAxiosSecure } from "../../../Axios.config";
 import { authContext } from "../../../Authentication/AuthProvider";
 import ErrorPage from "../../../Shared/ErrorPage";
 import { Navigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const UserRow = ({ rowId }) => {
   const { user } = useContext(authContext);
@@ -28,7 +29,7 @@ const UserRow = ({ rowId }) => {
       .patch(`/makeAdmin/${rowId}?email=${user.email}`)
       .then((res) => {
         if (res.data.modifiedCount === 1) {
-          alert(`${rowData.data.name} is now an admin.`);
+          Swal.fire(rowData.data.name + " is now an admin.");
         }
       })
       .then(() => {
@@ -41,9 +42,9 @@ const UserRow = ({ rowId }) => {
     myAxiosSecure
       .patch(`/makeVolunteer/${rowId}?email=${user.email}`)
       .then((res) => {
-       if (res.data.modifiedCount === 1) {
-         alert(`${rowData.data.name} is now a volunteer.`);
-       }
+        if (res.data.modifiedCount === 1) {
+          Swal.fire(rowData.data.name + ` is now a volunteer.`);
+        }
       })
       .then(() => {
         refetch();
@@ -55,9 +56,9 @@ const UserRow = ({ rowId }) => {
     myAxiosSecure
       .patch(`/blockUser/${rowId}?email=${user.email}`)
       .then((res) => {
-         if (res.data.modifiedCount === 1) {
-           alert(`${rowData.data.name} is now blocked.`);
-         }
+        if (res.data.modifiedCount === 1) {
+         Swal.fire(rowData.data.name + ` is now blocked.`);
+        }
       })
       .then(() => {
         refetch();
@@ -69,9 +70,9 @@ const UserRow = ({ rowId }) => {
     myAxiosSecure
       .patch(`/unblockUser/${rowId}?email=${user.email}`)
       .then((res) => {
-         if (res.data.modifiedCount === 1) {
-           alert(`${rowData.data.name} is now active.`);
-         }
+        if (res.data.modifiedCount === 1) {
+          Swal.fire(rowData.data.name + ` is now active.`);
+        }
       })
       .then(() => {
         refetch();
@@ -140,7 +141,7 @@ const UserRow = ({ rowId }) => {
         </th>
       </tr>
     );
-  } 
+  }
 };
 
 UserRow.propTypes = {

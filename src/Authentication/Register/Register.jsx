@@ -5,6 +5,7 @@ import districts from "./districts";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { authContext } from "../AuthProvider";
 import { myAxios } from "../../Axios.config";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const { user, register, update } = useContext(authContext);
@@ -52,7 +53,7 @@ const Register = () => {
       register(form.email, form.password)
         .then(() => {
           update(form.name, form.avatar)
-            .then(console.log("displayName and photoURL is set"))
+            // .then(console.log("displayName and photoURL is set"))
 
             .catch((e) => console.log(e.message));
         })
@@ -63,10 +64,17 @@ const Register = () => {
             }
           });
         })
-        
+        .then(() => {
+          Swal.fire("Created Account!");
+        })
+
         .catch((e) => console.log(e.message));
     } else {
-      alert("passwords dont match !");
+      Swal.fire({
+        icon: "error",
+        title: "Passwords do not match !",
+        text: "both passwords must match.",
+      });
     }
   };
 

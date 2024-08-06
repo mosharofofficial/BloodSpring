@@ -9,6 +9,7 @@ import useGetUser from "../../../Shared/CustomHooks/useGetUser";
 import { myAxiosSecure } from "../../../Axios.config";
 import { Navigate } from "react-router-dom";
 import BlockedPage from "../../../Shared/BlockedPage";
+import Swal from "sweetalert2";
 
 const CreateDonationRequest = () => {
   const { user } = useContext(authContext);
@@ -76,7 +77,7 @@ const CreateDonationRequest = () => {
     e.preventDefault();
 
     if (!data?.isActive) {
-      alert("User has been blocked");
+      Swal.fire("User has been blocked");
       return;
     } else {
       const form = getFormObject(e.target);
@@ -87,7 +88,7 @@ const CreateDonationRequest = () => {
         })
         .then((res) => {
           if (res.data.acknowledged) {
-            alert("Request Created Successfully .");
+            Swal.fire("Request Created Successfully .");
           }
         })
         .catch((e) => console.log(e.message));

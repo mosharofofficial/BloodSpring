@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
 import { myAxiosSecure } from "../Axios.config";
 import { BsThreeDots } from "react-icons/bs";
+import Swal from "sweetalert2";
 
 const Row = ({
   reqData,
@@ -13,21 +14,55 @@ const Row = ({
   const navigate = useNavigate();
 
   const handleDelete = () => {
-    myAxiosSecure
-      .delete(`/deleteRequest/${reqData._id}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("access-token")}`,
-        },
-      })
-      .then((res) => {
-        if (res.data.deletedCount === 1) {
-          alert("Request deleted successfully .");
-        }
-      })
-      .then(() => {
-        refetch();
-      })
-      .catch((e) => console.log(e.message));
+
+
+
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+
+
+
+         myAxiosSecure
+           .delete(`/deleteRequest/${reqData._id}`, {
+             headers: {
+               authorization: `Bearer ${localStorage.getItem("access-token")}`,
+             },
+           })
+           .then((res) => {
+             if (res.data.deletedCount === 1) {
+               Swal.fire({
+                 title: "Deleted!",
+                 text: "Request has been deleted.",
+                 icon: "success",
+               });
+             }
+           })
+           .then(() => {
+             refetch();
+           })
+           .catch((e) => console.log(e.message));
+        
+        
+        
+        
+        
+        
+        
+      }
+    });
+    
+    
+    
+   
   };
 
   const updateStatus = (newStatus) => {
@@ -44,7 +79,7 @@ const Row = ({
       )
       .then((res) => {
         if (res.data.modifiedCount === 1) {
-          alert("Request modified successfully .");
+          Swal.fire("Request modified successfully .");
         }
       })
       .then(() => {

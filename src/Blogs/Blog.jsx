@@ -15,7 +15,7 @@ const Blog = () => {
 
   useEffect(() => {
     if (user) {
-      console.log(user.email)
+      // console.log(user.email)
       myAxiosSecure
         .get(`/getBlog/${blogId}?email=${user.email}`, {
           headers: {

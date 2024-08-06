@@ -16,18 +16,22 @@ export const authContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (cUser) => {
       setUser(cUser);
+      setLoading(false)
       if (cUser) {
+
         const userInfo = { email: cUser.email };
+
         // console.log("new token info : ", userInfo)
         myAxios.post("/jwt", userInfo).then((res) => {
           // console.log(res.data);
           if (res.data.token) {
             localStorage.setItem("access-token", res.data.token);
-            console.log("token has been set");
+            // console.log("token has been set");
           }
         });
       } else {
@@ -43,21 +47,28 @@ const AuthProvider = ({ children }) => {
   //   gmail login setup :
   const googleProvider = new GoogleAuthProvider();
   const googleLogin = () => {
+    setLoading(false)
     return signInWithPopup(auth, googleProvider);
   };
 
   //   email and password sign up setup:
   const register = (email, password) => {
+    setLoading(false);
+
     return createUserWithEmailAndPassword(auth, email, password);
   };
 
   //   email and password login setup:
   const login = (email, password) => {
+    setLoading(false);
+
     return signInWithEmailAndPassword(auth, email, password);
   };
 
   //   log out setup:
   const logout = () => {
+    setLoading(true);
+
     return signOut(auth);
   };
 
@@ -69,7 +80,15 @@ const AuthProvider = ({ children }) => {
     });
   };
 
-  const values = { user, googleLogin, register, login, logout, update };
+  const values = {
+    user,
+    googleLogin,
+    register,
+    login,
+    logout,
+    update,
+    loading,
+  };
 
   return <authContext.Provider value={values}>{children}</authContext.Provider>;
 };

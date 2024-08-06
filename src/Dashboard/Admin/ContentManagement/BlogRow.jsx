@@ -4,6 +4,7 @@ import HTMLReactParser from "html-react-parser/lib/index";
 import { BsThreeDots } from "react-icons/bs";
 import { myAxiosSecure } from "../../../Axios.config";
 import { authContext } from "../../../Authentication/AuthProvider";
+import Swal from "sweetalert2";
 
 const BlogRow = ({ rowData, refetch, currentUser }) => {
   const { user } = useContext(authContext);
@@ -13,7 +14,7 @@ const BlogRow = ({ rowData, refetch, currentUser }) => {
       .patch(`/publishBlog/${rowData._id}?email=${user.email}`)
       .then((res) => {
         if (res.data.modifiedCount === 1) {
-          alert("Successfully published blog.");
+          Swal.fire("Successfully published blog.");
         }
       })
       .then(() => refetch())
@@ -25,7 +26,7 @@ const BlogRow = ({ rowData, refetch, currentUser }) => {
       .patch(`/unpublishBlog/${rowData._id}?email=${user.email}`)
       .then((res) => {
         if (res.data.modifiedCount === 1) {
-          alert("Successfully unpublished blog.");
+          Swal.fire("Successfully unpublished blog.");
         }
       })
       .then(() => refetch())
@@ -33,15 +34,46 @@ const BlogRow = ({ rowData, refetch, currentUser }) => {
   };
 
   const deleteBlog = () => {
-    myAxiosSecure
-      .delete(`/deleteBlog/${rowData._id}?email=${user.email}`)
-      .then((res) => {
-        if (res.data.deletedCount === 1) {
-          alert("Successfully deleted blog.");
-        }
-      })
-      .then(() => refetch())
-      .catch((e) => console.log(e.message));
+
+
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        myAxiosSecure
+          .delete(`/deleteBlog/${rowData._id}?email=${user.email}`)
+          .then((res) => {
+            if (res.data.deletedCount === 1) {
+               Swal.fire({
+                 title: "Deleted!",
+                 text: "Blog has been deleted.",
+                 icon: "success",
+               });
+            }
+          })
+          .then(() => refetch())
+          .catch((e) => console.log(e.message));
+
+       
+      }
+    });
+    
+
+    // myAxiosSecure
+    //   .delete(`/deleteBlog/${rowData._id}?email=${user.email}`)
+    //   .then((res) => {
+    //     if (res.data.deletedCount === 1) {
+    //       Swal.fire("Successfully deleted blog.");
+    //     }
+    //   })
+    //   .then(() => refetch())
+    //   .catch((e) => console.log(e.message));
   };
 
   return (

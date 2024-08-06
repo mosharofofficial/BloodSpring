@@ -6,6 +6,7 @@ import upazilas from "../Authentication/Register/upazilas";
 import { myAxiosSecure } from "../Axios.config";
 import { authContext } from "../Authentication/AuthProvider";
 import ErrorPage from "../Shared/ErrorPage";
+import Swal from "sweetalert2";
 
 const Profile = () => {
   const { update } = useContext(authContext);
@@ -65,12 +66,16 @@ const Profile = () => {
         .then((res) => {
           if (res.data.modifiedCount === 1) {
             update(formData.name, formData.avatar)
-              .then(() => console.log("firebase profile updated"))
+              // .then(() => console.log("firebase profile updated"))
               .catch((e) => console.log(e.message));
 
             currentUserRefetch();
 
-            alert("Data has been updated. ");
+            Swal.fire({
+              title: "Updated",
+              text: "Data has been updated !",
+              icon: "Success",
+            });
           }
         })
         .catch((e) => console.log(e.message));

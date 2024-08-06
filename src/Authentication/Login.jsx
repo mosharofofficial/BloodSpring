@@ -2,6 +2,7 @@ import { useContext } from "react";
 import PropTypes from "prop-types";
 import { Link, Navigate, useLocation } from "react-router-dom";
 import { authContext } from "./AuthProvider";
+import Swal from "sweetalert2";
 
 const Login = () => {
   const { user, login } = useContext(authContext);
@@ -24,12 +25,16 @@ const Login = () => {
 
     login(form.email, form.password)
       .then(() => {
-        alert("logged in");
+        Swal.fire("Logged In!");
       })
-      .then(() => {
-        location.reload();
-      })
-      .catch((e) => console.log(e.message));
+      // .then(() => {
+      //   location.reload();
+      // })
+      .catch((e) => {
+        if (e.message === `Firebase: Error (auth/invalid-credential).`) {
+          Swal.fire("Wrong Email or Password");
+        }
+      });
   };
 
   const path = useLocation().state;

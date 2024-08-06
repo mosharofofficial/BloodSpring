@@ -9,32 +9,28 @@ import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_red.css";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
+import Swal from "sweetalert2";
 
 const EditDonationRequest = () => {
-
   const { user } = useContext(authContext);
-    const { id } = useParams();
+  const { id } = useParams();
 
-     const {
-       data: pastData = {},
-       isPending: pastDataIsPending,
-       refetch,
-     } = useQuery({
-       queryKey: [id],
-       queryFn: async () =>
-         await myAxiosSecure.get(`/requests/${id}`, {
-           headers: {
-             authorization: `Bearer ${localStorage.getItem("access-token")}`,
-           },
-           params: {
-             email: user.email,
-           },
-         }),
-     });
-
-     
-    
-    
+  const {
+    data: pastData = {},
+    isPending: pastDataIsPending,
+    refetch,
+  } = useQuery({
+    queryKey: [id],
+    queryFn: async () =>
+      await myAxiosSecure.get(`/requests/${id}`, {
+        headers: {
+          authorization: `Bearer ${localStorage.getItem("access-token")}`,
+        },
+        params: {
+          email: user.email,
+        },
+      }),
+  });
 
   const { data } = useGetUser();
   const [district, setDistrict] = useState("");
@@ -42,9 +38,6 @@ const EditDonationRequest = () => {
   const [date, setDate] = useState("");
   const [time, setTime] = useState("");
   const [selectedUpazila, setSelectedUpazila] = useState("");
-
-
- 
 
   const [districtTriggered, setDistrictTriggered] = useState(false);
   useEffect(() => {
@@ -113,7 +106,7 @@ const EditDonationRequest = () => {
     e.preventDefault();
 
     if (!data?.isActive) {
-      alert("User has been blocked");
+      Swal.fire("User has been blocked");
       return;
     } else {
       const form = getFormObject(e.target);
@@ -128,9 +121,12 @@ const EditDonationRequest = () => {
         })
         .then((res) => {
           if (res.data.acknowledged) {
-            alert("Request Updated Successfully .");
+            Swal.fire("Request Updated Successfully .");
             // console.log(res.data);
           }
+        })
+        .then(() => {
+          location.reload();
         })
         .catch((e) => console.log(e.message));
     }

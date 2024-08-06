@@ -6,6 +6,7 @@ import "react-quill/dist/quill.snow.css";
 import { TiBatteryLow } from "react-icons/ti";
 import useGetUser from "../../../Shared/CustomHooks/useGetUser";
 import { Navigate } from "react-router-dom";
+import Swal from "sweetalert2";
 
 const AddBlog = () => {
   const { data: user = {}, isPending } = useGetUser();
@@ -24,7 +25,7 @@ const AddBlog = () => {
       .post(`/addBlog?email=${user.email}`, { blog })
       .then((res) => {
         if (res.data.insertedId) {
-          alert("Blog added to database .");
+          Swal.fire("Blog added to database .");
         }
       })
       .catch((e) => console.log(e.message));
