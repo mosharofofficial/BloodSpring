@@ -6,12 +6,13 @@ import { authContext } from "../../../Authentication/AuthProvider";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_red.css";
 import useGetUser from "../../../Shared/CustomHooks/useGetUser";
-import { myAxiosSecure } from "../../../Axios.config";
 import { Navigate } from "react-router-dom";
 import BlockedPage from "../../../Shared/BlockedPage";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Shared/CustomHooks/useAxiosSecure";
 
 const CreateDonationRequest = () => {
+  const myAxiosSecure = useAxiosSecure();
   const { user } = useContext(authContext);
 
   const { data, isPending } = useGetUser();

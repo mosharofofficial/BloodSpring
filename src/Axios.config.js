@@ -6,9 +6,20 @@ const myAxios = axios.create({
 
 const myAxiosSecure = axios.create({
   baseURL: "https://b9a12-server-side-rasc3ta.vercel.app",
-  headers: {
-    authorization: `Bearer ${localStorage.getItem("access-token")}`,
-  },
+  // headers: {
+  //   authorization: `Bearer ${localStorage.getItem("access-token")}`,
+  // },
 });
+
+// const myAxios = axios.create({
+//   baseURL: "http://localhost:5000",
+// });
+
+// const myAxiosSecure = axios.create({
+//   baseURL: "http://localhost:5000",
+//   // headers: {
+//   //   authorization: `Bearer ${localStorage.getItem("access-token")}`,
+//   // },
+// });
 
 export { myAxios, myAxiosSecure };

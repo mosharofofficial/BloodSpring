@@ -1,9 +1,9 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { myAxiosSecure } from "../Axios.config";
 import { BsThreeDots } from "react-icons/bs";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../Shared/CustomHooks/useAxiosSecure";
 
 const MyDonationRow = ({
   reqData,
@@ -11,6 +11,7 @@ const MyDonationRow = ({
   currentUser,
   //  updateStatus
 }) => {
+  const myAxiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const handleDelete = () => {
@@ -25,11 +26,7 @@ const MyDonationRow = ({
     }).then((result) => {
       if (result.isConfirmed) {
         myAxiosSecure
-          .delete(`/deleteRequest/${reqData._id}`, {
-            headers: {
-              authorization: `Bearer ${localStorage.getItem("access-token")}`,
-            },
-          })
+          .delete(`/deleteRequest/${reqData._id}`)
           .then((res) => {
             if (res.data.deletedCount === 1) {
               Swal.fire({
@@ -52,9 +49,6 @@ const MyDonationRow = ({
       .patch(
         `/updateReqStatus?email=${currentUser.email}&role=${currentUser.role}`,
         {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("access-token")}`,
-          },
           status: newStatus,
           id: reqData._id,
         }

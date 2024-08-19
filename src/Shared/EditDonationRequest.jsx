@@ -4,14 +4,15 @@ import useGetUser from "./CustomHooks/useGetUser";
 import districts from "../Authentication/Register/districts";
 import upazilas from "../Authentication/Register/upazilas";
 import { authContext } from "../Authentication/AuthProvider";
-import { myAxiosSecure } from "../Axios.config";
 import Flatpickr from "react-flatpickr";
 import "flatpickr/dist/themes/material_red.css";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 import Swal from "sweetalert2";
+import useAxiosSecure from "./CustomHooks/useAxiosSecure";
 
 const EditDonationRequest = () => {
+  const myAxiosSecure = useAxiosSecure();
   const { user } = useContext(authContext);
   const { id } = useParams();
 
@@ -23,9 +24,6 @@ const EditDonationRequest = () => {
     queryKey: [id],
     queryFn: async () =>
       await myAxiosSecure.get(`/requests/${id}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("access-token")}`,
-        },
         params: {
           email: user.email,
         },
@@ -115,9 +113,6 @@ const EditDonationRequest = () => {
       myAxiosSecure
         .patch(`/update/${id}?email=${user.email}`, {
           form,
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("access-token")}`,
-          },
         })
         .then((res) => {
           if (res.data.acknowledged) {

@@ -1,14 +1,15 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
-import { myAxiosSecure } from "../../../Axios.config";
 import ReactQuill from "react-quill";
 import "react-quill/dist/quill.snow.css";
 import { TiBatteryLow } from "react-icons/ti";
 import useGetUser from "../../../Shared/CustomHooks/useGetUser";
 import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Shared/CustomHooks/useAxiosSecure";
 
 const AddBlog = () => {
+  const myAxiosSecure = useAxiosSecure();
   const { data: user = {}, isPending } = useGetUser();
 
   const [title, setTitle] = useState("");

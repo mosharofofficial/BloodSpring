@@ -2,12 +2,14 @@ import React, { useContext } from "react";
 import PropTypes from "prop-types";
 import HTMLReactParser from "html-react-parser/lib/index";
 import { BsThreeDots } from "react-icons/bs";
-import { myAxiosSecure } from "../../../Axios.config";
 import { authContext } from "../../../Authentication/AuthProvider";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Shared/CustomHooks/useAxiosSecure";
 
 const BlogRow = ({ rowData, refetch, currentUser }) => {
   const { user } = useContext(authContext);
+
+  const myAxiosSecure = useAxiosSecure();
 
   const publish = () => {
     myAxiosSecure

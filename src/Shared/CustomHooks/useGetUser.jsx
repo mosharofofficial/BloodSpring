@@ -4,7 +4,6 @@ import { useContext } from "react";
 import { authContext } from "../../Authentication/AuthProvider";
 
 const useGetUser = () => {
-  // console.log(localStorage.getItem("access-token"));
   const { user } = useContext(authContext);
   // console.log(user.email);
   const {

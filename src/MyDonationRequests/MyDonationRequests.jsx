@@ -29,7 +29,7 @@ const MyDonationRequests = () => {
           My Donation Requests
         </h1>
         <div className="bg-crimson text-white">
-          <div className="overflow-x-auto ">
+          <div className="overflow-x-auto  min-h-[400px]">
             <div className="flex justify-center ">
               <div className="dropdown dropdown-right dropdown-start">
                 <div tabIndex={0} role="button" className="btn button px-2 m-0">

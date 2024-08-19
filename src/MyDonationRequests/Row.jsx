@@ -1,8 +1,8 @@
 import PropTypes from "prop-types";
 import { useNavigate } from "react-router-dom";
-import { myAxiosSecure } from "../Axios.config";
 import { BsThreeDots } from "react-icons/bs";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../Shared/CustomHooks/useAxiosSecure";
 
 const Row = ({
   reqData,
@@ -11,13 +11,10 @@ const Row = ({
   currentUser,
   //  updateStatus
 }) => {
+  const myAxiosSecure = useAxiosSecure();
   const navigate = useNavigate();
 
   const handleDelete = () => {
-
-
-
-
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -28,41 +25,23 @@ const Row = ({
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-
-
-
-         myAxiosSecure
-           .delete(`/deleteRequest/${reqData._id}`, {
-             headers: {
-               authorization: `Bearer ${localStorage.getItem("access-token")}`,
-             },
-           })
-           .then((res) => {
-             if (res.data.deletedCount === 1) {
-               Swal.fire({
-                 title: "Deleted!",
-                 text: "Request has been deleted.",
-                 icon: "success",
-               });
-             }
-           })
-           .then(() => {
-             refetch();
-           })
-           .catch((e) => console.log(e.message));
-        
-        
-        
-        
-        
-        
-        
+        myAxiosSecure
+          .delete(`/deleteRequest/${reqData._id}`)
+          .then((res) => {
+            if (res.data.deletedCount === 1) {
+              Swal.fire({
+                title: "Deleted!",
+                text: "Request has been deleted.",
+                icon: "success",
+              });
+            }
+          })
+          .then(() => {
+            refetch();
+          })
+          .catch((e) => console.log(e.message));
       }
     });
-    
-    
-    
-   
   };
 
   const updateStatus = (newStatus) => {
@@ -70,9 +49,6 @@ const Row = ({
       .patch(
         `/updateReqStatus?email=${currentUser.email}&role=${currentUser.role}`,
         {
-          headers: {
-            authorization: `Bearer ${localStorage.getItem("access-token")}`,
-          },
           status: newStatus,
           id: reqData._id,
         }

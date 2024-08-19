@@ -2,11 +2,13 @@ import { useContext } from "react";
 import PropTypes from "prop-types";
 import { useParams } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { myAxiosSecure } from "../Axios.config";
 import useGetUser from "./CustomHooks/useGetUser";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import useAxiosSecure from "./CustomHooks/useAxiosSecure";
 const RequestDetails = () => {
+  const myAxiosSecure = useAxiosSecure();
+
   const MySwal = withReactContent(Swal);
 
   const {
@@ -24,9 +26,6 @@ const RequestDetails = () => {
     queryKey: [id],
     queryFn: async () =>
       await myAxiosSecure.get(`/requests/${id}`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("access-token")}`,
-        },
         params: {
           email: user.email,
         },
@@ -83,9 +82,6 @@ const RequestDetails = () => {
       if (result.isConfirmed) {
         myAxiosSecure
           .patch(`/toInProgress?email=${user.email}`, {
-            headers: {
-              authorization: `Bearer ${localStorage.getItem("access-token")}`,
-            },
             status: "in progress",
             id,
             donorEmail: user.email,
@@ -103,7 +99,6 @@ const RequestDetails = () => {
           .catch((e) => console.log(e.message));
       }
     });
-
   };
 
   if (!isPending && !userPending) {

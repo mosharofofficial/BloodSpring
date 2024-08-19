@@ -1,14 +1,14 @@
 import { useContext,  useState } from "react";
 import PropTypes from "prop-types";
 import { Navigate, useNavigate } from "react-router-dom";
-import { myAxiosSecure } from "../../../Axios.config";
 import { authContext } from "../../../Authentication/AuthProvider";
 import BlogRow from "./BlogRow";
 import { useQuery } from "@tanstack/react-query";
 import useGetUser from "../../../Shared/CustomHooks/useGetUser";
+import useAxiosSecure from "../../../Shared/CustomHooks/useAxiosSecure";
 
 const ContentManagement = () => {
-
+  const myAxiosSecure = useAxiosSecure();
     const { data: currentUser = {}, isPending:userPending } = useGetUser();
   
   const navigate = useNavigate();

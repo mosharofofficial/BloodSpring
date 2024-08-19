@@ -2,13 +2,17 @@ import { useContext, useEffect } from "react";
 import PropTypes from "prop-types";
 import { BsThreeDots } from "react-icons/bs";
 import { useQuery } from "@tanstack/react-query";
-import { myAxiosSecure } from "../../../Axios.config";
 import { authContext } from "../../../Authentication/AuthProvider";
 import ErrorPage from "../../../Shared/ErrorPage";
 import { Navigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../../Shared/CustomHooks/useAxiosSecure";
+
 
 const UserRow = ({ rowId }) => {
+
+  const myAxiosSecure = useAxiosSecure();
+  
   const { user } = useContext(authContext);
 
   const {
@@ -29,7 +33,7 @@ const UserRow = ({ rowId }) => {
       .patch(`/makeAdmin/${rowId}?email=${user.email}`)
       .then((res) => {
         if (res.data.modifiedCount === 1) {
-          Swal.fire(rowData.data.name + " is now an admin.");
+          Swal.fire(rowData.data?.name + " is now an admin.");
         }
       })
       .then(() => {
@@ -43,7 +47,7 @@ const UserRow = ({ rowId }) => {
       .patch(`/makeVolunteer/${rowId}?email=${user.email}`)
       .then((res) => {
         if (res.data.modifiedCount === 1) {
-          Swal.fire(rowData.data.name + ` is now a volunteer.`);
+          Swal.fire(rowData.data?.name + ` is now a volunteer.`);
         }
       })
       .then(() => {
@@ -57,7 +61,7 @@ const UserRow = ({ rowId }) => {
       .patch(`/blockUser/${rowId}?email=${user.email}`)
       .then((res) => {
         if (res.data.modifiedCount === 1) {
-         Swal.fire(rowData.data.name + ` is now blocked.`);
+         Swal.fire(rowData.data?.name + ` is now blocked.`);
         }
       })
       .then(() => {
@@ -71,7 +75,7 @@ const UserRow = ({ rowId }) => {
       .patch(`/unblockUser/${rowId}?email=${user.email}`)
       .then((res) => {
         if (res.data.modifiedCount === 1) {
-          Swal.fire(rowData.data.name + ` is now active.`);
+          Swal.fire(rowData.data?.name + ` is now active.`);
         }
       })
       .then(() => {
@@ -82,25 +86,25 @@ const UserRow = ({ rowId }) => {
 
   if (!isPending && Object.keys(rowData)) {
     return (
-      <tr className="">
-        <td className="p-1">
+      <tr className="h-[100px]">
+        <td className="p-1 ">
           <div className="flex items-center gap-3">
             <div className="avatar">
               <div className="mask mask-squircle h-12 w-12">
                 <img
-                  src={rowData.data.avatar}
+                  src={rowData.data?.avatar}
                   alt="Avatar Tailwind CSS Component"
                 />
               </div>
             </div>
             <div>
-              <div className="font-bold">{rowData.data.name}</div>
-              <div className="text-sm opacity-90">{rowData.data.role}</div>
+              <div className="font-bold">{rowData.data?.name}</div>
+              <div className="text-sm opacity-90">{rowData.data?.role}</div>
             </div>
           </div>
         </td>
-        <td className="px-1">{rowData.data.email}</td>
-        <td className="px-1">{rowData.data.isActive ? "Active" : "Blocked"}</td>
+        <td className="px-1">{rowData.data?.email}</td>
+        <td className="px-1">{rowData.data?.isActive ? "Active" : "Blocked"}</td>
         <th>
           <div className="dropdown dropdown-left dropdown-end">
             <div tabIndex={0} role="button" className="btn button px-2 m-0">
@@ -114,10 +118,10 @@ const UserRow = ({ rowId }) => {
             >
               <li>
                 <button
-                  onClick={rowData.data.isActive ? blockUser : unblockUser}
+                  onClick={rowData.data?.isActive ? blockUser : unblockUser}
                   className="btn button px-0 min-h-[0px] h-[30px]"
                 >
-                  {rowData.data.isActive ? "Block" : "Unblock"}
+                  {rowData.data?.isActive ? "Block" : "Unblock"}
                 </button>
               </li>
               <li>

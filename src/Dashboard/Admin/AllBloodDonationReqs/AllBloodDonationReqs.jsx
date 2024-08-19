@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import useGetUser from "../../../Shared/CustomHooks/useGetUser";
-import { myAxiosSecure } from "../../../Axios.config";
 import Row from "../../../MyDonationRequests/Row";
 import { useQuery } from "@tanstack/react-query";
 import { Navigate } from "react-router-dom";
+import useAxiosSecure from "../../../Shared/CustomHooks/useAxiosSecure";
 
 const AllBloodDonationReqs = () => {
+  const myAxiosSecure = useAxiosSecure();
   const [filter, setFilter] = useState(undefined);
   const { data: currentUser = {}, isPending } = useGetUser();
   //   const [requestsData, setRequestsData] = useState([]);
