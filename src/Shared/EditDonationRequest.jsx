@@ -121,7 +121,7 @@ const EditDonationRequest = () => {
           }
         })
         .then(() => {
-          location.reload();
+          setTimeout(() => location.reload(), 1500);
         })
         .catch((e) => console.log(e.message));
     }

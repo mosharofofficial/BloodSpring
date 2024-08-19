@@ -31,15 +31,15 @@ const DashboardHome = () => {
   });
 
   if(!isPending && !userPending){return (
-    <div className="bg-crimson  text-white pb-5 h-screen">
+    <div className="bg-crimson  text-white pb-5 min-h-screen">
       <h1 className="text-4xl font-bold py-5 text-center border-b-[4px] border-white mb-5">
         Welcome {firebaseUser?.displayName}
         {/* {console.log(latestThree)} */}
       </h1>
-      <div className={`${(isPending || !latestThree.length) && "hidden "} `}>
+      <div className={`${(isPending || !latestThree.length) && "hidden "} min-h-[400px]`}>
 
           <h1 className="text-center text-3xl ">Latest Donation Requests </h1>
-        <div className="overflow-x-auto ">
+        <div className="overflow-x-auto min-w-[400px] min-h-[400px]">
           <table className="table table-xs ">
             <thead>
               <tr>

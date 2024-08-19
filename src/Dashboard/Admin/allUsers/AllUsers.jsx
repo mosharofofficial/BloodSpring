@@ -30,7 +30,7 @@ const AllUsers = () => {
 
   if (!isPending && !(Object.keys(currentUser) === 0)) {
     return (
-      <div className="bg-crimson text-white">
+      <div className="bg-crimson text-white min-h-screen">
         {/* {console.log(users[0])} */}
         <h1 className="text-3xl text-white w-full text-center p-5 border-b-[4px] border-white">
           All Users
