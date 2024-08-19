@@ -35,7 +35,7 @@ const AllUsers = () => {
         <h1 className="text-3xl text-white w-full text-center p-5 border-b-[4px] border-white">
           All Users
         </h1>
-        <div className="overflow-x-auto py-5 min-h-[90vh] flex justify-center">
+        <div className="overflow-x-auto py-5  flex justify-center">
           <table className="table userTable max-w-[1024px]  border-[1px]">
             {/* head */}
             <thead>
