@@ -86,7 +86,7 @@ const UserRow = ({ rowId }) => {
 
   if (!isPending && Object.keys(rowData)) {
     return (
-      <tr className="h-[100px]">
+      <tr className="h-[70px]">
         <td className="p-1 ">
           <div className="flex items-center gap-3">
             <div className="avatar">

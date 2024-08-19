@@ -39,7 +39,7 @@ const AllUsers = () => {
           <table className="table userTable max-w-[1024px]  border-[1px]">
             {/* head */}
             <thead>
-              <tr className="border-t-[1px] text-white h-[100px]">
+              <tr className="border-t-[1px] text-white h-[70px]">
                 <th>Name</th>
                 <th>Email</th>
                 <th>Status</th>
