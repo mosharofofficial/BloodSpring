@@ -9,9 +9,9 @@ const ErrorPage = () => {
         <FaDropletSlash />
       </span>
       <h1 className="text-2xl font-bold sm:text-5xl ">Page not found !</h1>
-      <button className="btn button mt-5">
-        <Link to={"/"}>Home</Link>
-      </button>
+      <Link to={"/"}>
+        <button className="btn button mt-5">Home</button>
+      </Link>
     </div>
   );
 };

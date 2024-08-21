@@ -9,18 +9,17 @@ const BlogCard = ({ blog }) => {
     <div className="gap-x bg-crimson   text-white my-5">
       {/* {console.log(blog)} */}
       <h1 className=" text-3xl py-5 px-3">
-        {HTMLReactParser(blog.title).props.children}
+        {/* {console.log(blog.title)} */}
+        {blog.title}
       </h1>
-      <img src={blog.thumbnail} className="  border-y-[2px] border-white" />
+      <img src={blog?.thumbnail} className="  border-y-[2px] border-white" />
       <p className=" text-lg sm:text-xl p-3    ">
-        {HTMLReactParser(blog.content).props.children[0].props.children}
+        {HTMLReactParser(blog?.content)?.props?.children?.[0]?.props?.children  || " "}
       </p>
       <div className="flex justify-center py-3 border-b-[10px] border-white">
         <button
           className="btn button"
-          onClick={() =>
-            navigate(`/blogs/${blog._id}`)
-          }
+          onClick={() => navigate(`/blogs/${blog._id}`)}
         >
           Read More
         </button>

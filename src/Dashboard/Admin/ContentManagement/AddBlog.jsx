@@ -15,9 +15,10 @@ const AddBlog = () => {
   const [title, setTitle] = useState("");
   const [thumbnail, setThumbnail] = useState("");
   const [value, setValue] = useState("");
-  const addBlog = () => {
+  const addBlog = (e) => {
+    e.preventDefault();
     const blog = {
-      title: `<h1>${title}</h1>`,
+      title: title,
       thumbnail: thumbnail,
       content: `<div>${value}</div>`,
       status: "draft",
@@ -43,10 +44,14 @@ const AddBlog = () => {
           <h1 className="text-4xl font-bold  ">Add Blog</h1>
         </div>
 
-        <div className="flex flex-col items-center max-w-[1280px]">
+        <form
+          onSubmit={addBlog}
+          className="flex flex-col items-center max-w-[1280px]"
+        >
           <div className="flex gap-1 items-center mb-5 min-w-[90%]">
             <span className="text-2xl">Title:</span>
             <input
+              required
               onChange={(e) => setTitle(e.target.value)}
               value={title}
               type="text"
@@ -57,6 +62,7 @@ const AddBlog = () => {
           <div className="flex gap-1 items-center mb-5 min-w-[90%]">
             <span className="text-2xl">Thumbnail:</span>
             <input
+              required
               onChange={(e) => setThumbnail(e.target.value)}
               value={thumbnail}
               type="text"
@@ -72,10 +78,10 @@ const AddBlog = () => {
               <ReactQuill theme="snow" value={value} onChange={setValue} />
             </div>
           </div>
-          <button className="btn button h-auto mt-5 " onClick={addBlog}>
+          <button type="submit" className="btn button h-auto mt-5 ">
             Add Blog
           </button>
-        </div>
+        </form>
       </div>
     );
   }

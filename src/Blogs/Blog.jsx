@@ -27,8 +27,8 @@ const Blog = () => {
   if (blog) {
     return (
       <div className="w-[90vw] max-w-[900px] mx-auto bg-crimson text-white p-4 mb-5 blogDetail">
-        {/* {console.log(blog)} */}
-        <>{HTMLReactParser(blog.title)}</>
+        {/* {console.log(HTMLReactParser(blog.content))} */}
+        <h1 className="text-3xl font-semibold">{blog.title}</h1>
         <img src={blog.thumbnail} />
         <>{HTMLReactParser(blog.content)}</>
       </div>
