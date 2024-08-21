@@ -16,7 +16,7 @@ const DonationReqs = () => {
 
   return (
     <div>
-      <h1 className="text-3xl font-bold text-crimson text-center mb-5">
+      <h1 className="text-3xl font-bold text-white bg-crimson text-center p-5">
         Blood Donation Requests
       </h1>
       <div className="border-t-[4px] border-crimson p-5 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 items-center  justify-center gap-2">

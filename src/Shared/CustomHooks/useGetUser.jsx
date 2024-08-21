@@ -1,9 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import { myAxiosSecure } from "../../Axios.config";
 import { useContext } from "react";
 import { authContext } from "../../Authentication/AuthProvider";
+import useAxiosSecure from "./useAxiosSecure";
 
 const useGetUser = () => {
+  const myAxiosSecure = useAxiosSecure();
   const { user } = useContext(authContext);
   // console.log(user.email);
   const {
@@ -14,9 +15,6 @@ const useGetUser = () => {
     queryKey: [`${user.email}`],
     queryFn: async () =>
       await myAxiosSecure.get(`/getCurrentUser`, {
-        headers: {
-          authorization: `Bearer ${localStorage.getItem("access-token")}`,
-        },
         params: {
           email: user.email,
         },

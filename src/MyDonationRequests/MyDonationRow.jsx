@@ -89,7 +89,7 @@ const MyDonationRow = ({
         }`}
       ></td>
       <td className={`flex flex-col p-0 `}>
-        <div className="dropdown dropdown-left dropdown-end">
+        <div className="dropdown dropdown-left dropdown-start">
           <div tabIndex={0} role="button" className="btn button px-2 m-0">
             <span className="text-3xl">
               <BsThreeDots />

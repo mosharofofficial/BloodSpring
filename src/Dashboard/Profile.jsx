@@ -3,12 +3,13 @@ import useGetUser from "../Shared/CustomHooks/useGetUser";
 import { useContext, useEffect, useRef, useState } from "react";
 import districts from "../Authentication/Register/districts";
 import upazilas from "../Authentication/Register/upazilas";
-import { myAxiosSecure } from "../Axios.config";
 import { authContext } from "../Authentication/AuthProvider";
 import ErrorPage from "../Shared/ErrorPage";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../Shared/CustomHooks/useAxiosSecure";
 
 const Profile = () => {
+  const myAxiosSecure = useAxiosSecure();
   const { update } = useContext(authContext);
 
   const {
@@ -73,8 +74,7 @@ const Profile = () => {
 
             Swal.fire({
               title: "Updated",
-              text: "Data has been updated !",
-              icon: "Success",
+              text: "Data has been updated !"
             });
           }
         })
