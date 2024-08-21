@@ -20,7 +20,10 @@ const Blog = () => {
       myAxiosSecure
         .get(`/getBlog/${blogId}?email=${user.email}`)
         .then((res) => setBlog(res.data))
-        .catch((e) => console.log(e.message));
+        .catch((e) => {
+          console.log(e.message);
+          location.reload();
+        });
     }
   }, [user]);
 
