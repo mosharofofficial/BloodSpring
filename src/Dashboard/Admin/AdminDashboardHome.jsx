@@ -66,11 +66,10 @@ const AdminDashboardHome = ({ user }) => {
       </div>
 
       <h1 className="text-4xl font-bold py-5 text-center border-y-[4px] border-white my-5">
-        Donation Data{" "}
+        Data Visualization{" "}
       </h1>
       <div className="flex justify-center items-center">
-
-      <RequestsDistrictChart></RequestsDistrictChart>
+        <RequestsDistrictChart></RequestsDistrictChart>
       </div>
     </div>
   );
