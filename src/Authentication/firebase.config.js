@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyBT6pVx--dI8DRypMCnimMH1FB7m05PuZ4",
-  authDomain: "bloodspring-7db88.firebaseapp.com",
-  projectId: "bloodspring-7db88",
-  storageBucket: "bloodspring-7db88.appspot.com",
-  messagingSenderId: "1071041652148",
-  appId: "1:1071041652148:web:dadbd5f30d64caa4f73ee1",
+  apiKey: import.meta.env.VITE_apiKey,
+  authDomain: import.meta.env.VITE_authDomain,
+  projectId: import.meta.env.VITE_projectId,
+  storageBucket: import.meta.env.VITE_storageBucket,
+  messagingSenderId: import.meta.env.VITE_messagingSenderId,
+  appId: import.meta.env.VITE_appId,
 };
 
 // Initialize Firebase
