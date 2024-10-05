@@ -25,6 +25,7 @@ const useGetChartData = () => {
 
       //   get district count object :
 
+      
       const districtCountObject = {};
       districtArray.map((district) => {
         if (Object.keys(districtCountObject).includes(district)) {
@@ -33,11 +34,17 @@ const useGetChartData = () => {
           districtCountObject[district] = 1;
         }
       });
-      setDistrictCount(districtCountObject);
+
+      const dataArray = Object.keys(districtCountObject).map(key=>{
+        return {name: key, Requests: districtCountObject[key]}
+      })
+      setDistrictCount(dataArray);
     }
   }, [chartData]);
 
-  const districtData = { districtCount: districtCount, loading: !(Object.keys(districtCount).length) || false};
+  // console.log(districtCount)
+
+  const districtData = { districtArray: districtCount, loading: !(Object.keys(districtCount).length) || false};
 
   return districtData;
 };

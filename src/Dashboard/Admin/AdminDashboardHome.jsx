@@ -12,7 +12,6 @@ import RequestsDistrictChart from "./Charts/RequestsDistrictChart";
 const AdminDashboardHome = ({ user }) => {
   const [userCount, setUserCount] = useState(0);
   const [requestCount, setRequestCount] = useState(0);
-  const { districtCount, loading } = useGetChartData();
 
   useEffect(() => {
     myAxios
@@ -69,7 +68,10 @@ const AdminDashboardHome = ({ user }) => {
       <h1 className="text-4xl font-bold py-5 text-center border-y-[4px] border-white my-5">
         Donation Data{" "}
       </h1>
+      <div className="flex justify-center items-center">
+
       <RequestsDistrictChart></RequestsDistrictChart>
+      </div>
     </div>
   );
 };
