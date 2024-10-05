@@ -1,10 +1,5 @@
 # BloodSpring
 
-## Admin Account :
-
-### Email: mosharof@gmail.com
-
-### Password: mosharof
 
 ## Live Site: <https://bloodspring-7db88.web.app/>
 
