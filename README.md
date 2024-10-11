@@ -21,7 +21,6 @@
 - Dashboard
 - Donation Requests
 - Content Management
-- Notifications
 - JWT Authentication
 - Responsive Design
 - Tanstack Query for Data Fetching
